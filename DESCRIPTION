@@ -1,0 +1,24 @@
+Package: damr
+Title: Read Drosophila Activity Monitor Data
+Date: 2017-07-26
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Quentin", "geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
+    )
+Description: Retreive behavioural data from the widely used Drosophila Activity Monitors.
+Imports: 
+  behavr,
+  data.table,
+   dplyr,
+   readr, 
+   hms,
+   tidyr,
+   magrittr
+Suggests: testthat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+URL: https://github.com/rethomics/damr
+BugReports: https://github.com/rethomics/damr/issues
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
