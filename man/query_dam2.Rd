@@ -48,7 +48,7 @@ It must have  the following columns:
 The time in data is expressed relatively to start_date.
 In other words, if you do circadian analysis, and your D-L transitions are at 10:00:00, you want to set
 \code{start_datetime = "YYY-MM-DD 10:00:00"}. The root directory is the folder where your files live.
-For instance, \code{result_dir = "C://where/I/Store/my/txt/files/"}
+For instance, \code{result_dir = "C:/where/I/Store/my/txt/files/"}
 }
 \examples{
 # This is where our data lives
@@ -67,7 +67,7 @@ print(dt)
 print(dt[meta=TRUE])
 
 # Just the first few reads, we run `head()` on each animal
-dt <- query_dam2(root_dir, query, FUN=head)
+dt <- query_dam2(root_dir, single_file_query, FUN=head)
 print(dt)
 }
 \seealso{

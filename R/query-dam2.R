@@ -47,7 +47,7 @@
 #' print(dt[meta=TRUE])
 #'
 #' # Just the first few reads, we run `head()` on each animal
-#' dt <- query_dam2(root_dir, query, FUN=head)
+#' dt <- query_dam2(root_dir, single_file_query, FUN=head)
 #' print(dt)
 #' @seealso [read_dam2_file] to to load data from a single file (without a query).
 #' @export
