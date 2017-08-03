@@ -99,3 +99,4 @@ dt[meta=T]
 * [behavr](https://github.com/rethomics/behavr) -- to manipulate the data (create new variable/meta-variables)
 * [ggetho](https://github.com/rethomics/ggetho) -- to plot visualise the data
 * [sleepr](https://github.com/rethomics/sleepr) -- to perform sleep and circadian rythm analysis
+
