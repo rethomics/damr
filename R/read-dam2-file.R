@@ -23,6 +23,10 @@ names(DAM2_COLS) <- c("idx", "date", "time","status", sprintf("no_data_%02d", 1:
 #' `start_datetime` is used as the reference time (ZT0).
 #' Therefore, if you are interested in circadian analysis and D->L transitions are at 10:00:00,
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
+#' @examples
+#' path <- damr_example("M064.txt")
+#' dt <- read_dam2_file(path, region_id=c(1:3), start_datetime="2017-06-30 15:00:00")
+#' print(dt)
 #' @seealso [query_dam2] to load data from many files and biological conditions using a query system
 #' @export
 read_dam2_file <- function(path,
@@ -63,7 +67,7 @@ read_dam2_file <- function(path,
   else
     t0 = start_datetime
 
-  experiment_id <- paste(start_datetime, basename(path),sep="|")
+  experiment_id <- paste(t0, basename(path),sep="|")
   df <- df %>%
         dplyr::filter(status ==1) %>% # valid reads
         dplyr::distinct(datetime, .keep_all = TRUE) %>% # remove possible duplicates
@@ -81,7 +85,7 @@ read_dam2_file <- function(path,
   meta <- unique(dt[, c("id","region_id")],by="id")
 
   meta[,experiment_id := experiment_id]
-  meta[,start_datetime:=start_datetime]
+  meta[,start_datetime:=t0]
   meta[,file:=basename(path)]
   dt[,region_id:=NULL]
   behavr::behavr(dt,meta)

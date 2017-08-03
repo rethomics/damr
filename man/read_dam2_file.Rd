@@ -36,6 +36,11 @@ It allows selection of a date range and channels (i.e. regions).
 Therefore, if you are interested in circadian analysis and D->L transitions are at 10:00:00,
 you probably want to set \code{start_datetime = "YYYY-MM-DD 10:00:00"}.
 }
+\examples{
+path <- damr_example("M064.txt")
+dt <- read_dam2_file(path, region_id=c(1:3), start_datetime="2017-06-30 15:00:00")
+print(dt)
+}
 \seealso{
 \link{query_dam2} to load data from many files and biological conditions using a query system
 }

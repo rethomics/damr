@@ -1,5 +1,8 @@
 parse_datetime <- function(x, tz="UTC"){
   stopifnot(length(x)==1) # scalar only
+  if(is.factor(x))
+    x <-  as.character(x)
+
   if(is.infinite(x) | "POSIXct" %in% class(x))
     return(x)
   if(is.character(x)){

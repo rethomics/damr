@@ -3,7 +3,7 @@
 #' Uses a query mechanism to get data from a DAM2 array.
 #' This is useful when using the default behaviour of TriKinetics software
 #' where data is simply appended to a single long file per monitor.
-#'
+#' @param result_dir the root directory where all daily data are saved
 #' @param query [data.table] representing a formatted query used to request data (see detail).
 #' @param FUN function (optional) to transform the data from each animal
 #' immediately after is has been loaded.
@@ -18,42 +18,52 @@
 #' Conceptually, each row of the query describes one animal with one set of conditions (when `region_id` is specified),
 #' or in each monitor (when it is not).
 #' It must have  the following columns:
-#' * `path` -- the location of a data file (e.g. "C:/User/me/Desktop/Monitor3.txt").
-#' * `start_datetme` -- the first day and time of the requested experiment (e.g. "2014-12-28 18:00:00").
-#' * `stop_datetime` -- the last day and time of the requested experiment (e.g. "2014-12-30  19:00:00" or simply "2014-12-30").
+#' * `file` -- the location of a data file (e.g. `"Monitor3.txt"`).
+#' * `start_datetme` -- the first day and time of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
+#' * `stop_datetime` -- the last day and time of the requested experiment (e.g. `"2014-12-30  19:00:00"` or simply "2014-12-30").
 #' * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. "20").
 #'   `region_id` is optional. If not provided, all 32 channels are loaded *with the same conditions*.
 #' * `???` *any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
 #'
 #' The time in data is expressed relatively to start_date.
 #' In other words, if you do circadian analysis, and your D-L transitions are at 10:00:00, you want to set
-#' `start_datetime = "YYY-MM-DD 10:00:00"`.
-#' @examples
-#' sample_file <- damr_example("M064.txt")
-#' query = data.table::data.table(path=sample_file,
-#'                     # note the time (10:00) is added as reference time
-#'                     start_datetime = c("2017-07-01 10:00:00", "2017-07-02 10:00:00"),
-#'                     stop_datetime = "2017-07-07",
-#'                     region_id=c(1:32),
-#'                     condition=rep(letters[1:2],each=16),
-#'                     genotype=c("A", "A", "B", "B"))
+#' `start_datetime = "YYY-MM-DD 10:00:00"`. The root directory is the folder where your files live.
+#' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
 #'
-#' dt <- query_dam2(query)
+#' @examples
+#' # This is where our data lives
+#' root_dir <- damr_example_dir()
+#'
+#' # A query already made for us.
+#' # It defines condition and genotype of each animal
+#' data(single_file_query)
+#' print(single_file_query)
+#'
+#' # we find and load the matching data
+#' dt <- query_dam2(root_dir,single_file_query)
 #' print(dt)
-#' # genotype was added to our metadata:
+#'
+#' # genotype and condition to our metadata:
 #' print(dt[meta=TRUE])
-#' # Just the first few reads, we run head() on each animal
-#' dt <- query_dam2(query, FUN=head)
+#'
+#' # Just the first few reads, we run `head()` on each animal
+#' dt <- query_dam2(root_dir, query, FUN=head)
 #' print(dt)
 #' @seealso [read_dam2_file] to to load data from a single file (without a query).
 #' @export
-query_dam2 <- function(query, FUN=NULL, ...){
+query_dam2 <- function(result_dir, query, FUN=NULL, ...){
   tz="UTC"
+
+  check_dir_exists(result_dir)
   q <- data.table::copy(data.table::as.data.table(query))
+
   cn <- colnames(q)
-  if(!("path" %in% cn & "start_datetime" %in% cn & "stop_datetime" %in% cn )){
-    stop("query MUST have at least thre columns names `path`, `start_datetime` and `stop_datetime`")
+  if(!("file" %in% cn & "start_datetime" %in% cn & "stop_datetime" %in% cn )){
+    stop("query MUST have at least three columns names `file`, `start_datetime` and `stop_datetime`")
   }
+
+  q[,path:=paste(result_dir,file,sep="/")]
+  q[,file:=NULL]
 
 
   q[,experiment_id:=sprintf("%s|%s",
@@ -88,10 +98,12 @@ query_dam2 <- function(query, FUN=NULL, ...){
       c("id", setdiff(colnames(q[,-"path"]), colnames(met))),
       with=F],
     on="id"]
-
+  data.table::setkeyv(met,"id")
   # replace metadata
   behavr::setmeta(d, met)
   if(!is.null(FUN))
     d <- d[,FUN(.SD, ...),by="id"]
   d
 }
+
+

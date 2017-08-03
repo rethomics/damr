@@ -16,6 +16,7 @@ test_that("Start and stop dates work as expected when reading whole file with er
   expect_equal(damr:::parse_datetime(d$datetime[2]), EXPECTED_LAST_READ)
 })
 
+
 test_that("Start and stop dates work as expected when setting a start", {
   FILE <- damr_example("M064.txt")
   EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-06-30 14:55:00", tz="UTC")
@@ -69,4 +70,13 @@ test_that("Error for daylight saving bug", {
   FILE <- damr_example("M064_disconnected.txt")
   expect_error(damr:::find_dam2_first_last_lines(FILE),
                  regexp = "[Tt]ime has jumped")
+})
+
+
+
+test_that("ZIP wiles can be processed", {
+  FILE <- damr_example("M014.txt.zip")
+  EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-06-30 14:55:00", tz="UTC")
+  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-06-30 14:55:00", stop_datetime = +Inf, tz="UTC")
+  expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
 })

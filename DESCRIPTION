@@ -6,6 +6,7 @@ Authors@R: c(
     person("Quentin", "geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
     )
 Description: Retreive behavioural data from the widely used Drosophila Activity Monitors.
+Depends:  R (>= 2.10)
 Imports: 
   behavr,
   data.table,

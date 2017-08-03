@@ -2,21 +2,28 @@
 % Please edit documentation in R/example.R
 \name{damr_example}
 \alias{damr_example}
+\alias{damr_example_dir}
 \title{Get path to damr example}
 \usage{
 damr_example(path = NULL)
+
+damr_example_dir()
 }
 \arguments{
 \item{path}{Name of file. If \code{NULL}, the example files will be listed.}
 }
 \description{
 damr comes with a sample DAM2 files in its \code{inst/extdata}
-directory. This function make them easy to access.
+directory. \code{damr_example} allow  make them easy to access.
 }
 \examples{
+# list all files
 damr_example()
+# get path to one file
 damr_example("M014.txt")
+# get the directory wih all the files
+damr_example_dir()
 }
 \author{
-Hadley Wickham  (copied from readr)
+Hadley Wickham  (modified from readr)
 }

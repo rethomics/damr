@@ -4,9 +4,11 @@
 \alias{query_dam2}
 \title{Retrieves DAM2 data from one or several continuous files}
 \usage{
-query_dam2(query, FUN = NULL, ...)
+query_dam2(result_dir, query, FUN = NULL, ...)
 }
 \arguments{
+\item{result_dir}{the root directory where all daily data are saved}
+
 \item{query}{\link{data.table} representing a formatted query used to request data (see detail).}
 
 \item{FUN}{function (optional) to transform the data from each animal
@@ -35,33 +37,37 @@ Conceptually, each row of the query describes one animal with one set of conditi
 or in each monitor (when it is not).
 It must have  the following columns:
 \itemize{
-\item \code{path} -- the location of a data file (e.g. "C:/User/me/Desktop/Monitor3.txt").
-\item \code{start_datetme} -- the first day and time of the requested experiment (e.g. "2014-12-28 18:00:00").
-\item \code{stop_datetime} -- the last day and time of the requested experiment (e.g. "2014-12-30  19:00:00" or simply "2014-12-30").
+\item \code{file} -- the location of a data file (e.g. \code{"Monitor3.txt"}).
+\item \code{start_datetme} -- the first day and time of the requested experiment (e.g. \code{"2014-12-28 18:00:00"}).
+\item \code{stop_datetime} -- the last day and time of the requested experiment (e.g. \code{"2014-12-30 19:00:00"} or simply "2014-12-30").
 \item \code{region_id} -- the channel (between 1 and 32) in which the animal was in (e.g. "20").
 \code{region_id} is optional. If not provided, all 32 channels are loaded \emph{with the same conditions}.
 \item \code{???} \emph{any number of arbitrary columns} to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
+}
+
 The time in data is expressed relatively to start_date.
 In other words, if you do circadian analysis, and your D-L transitions are at 10:00:00, you want to set
-\code{start_datetime = "YYY-MM-DD 10:00:00"}.
-}
+\code{start_datetime = "YYY-MM-DD 10:00:00"}. The root directory is the folder where your files live.
+For instance, \code{result_dir = "C://where/I/Store/my/txt/files/"}
 }
 \examples{
-sample_file <- damr_example("M064.txt")
-query = data.table::data.table(path=sample_file,
-                    # note the time (10:00) is added as reference time
-                    start_datetime = c("2017-07-01 10:00:00", "2017-07-02 10:00:00"),
-                    stop_datetime = "2017-07-07",
-                    region_id=c(1:32),
-                    condition=rep(letters[1:2],each=16),
-                    genotype=c("A", "A", "B", "B"))
+# This is where our data lives
+root_dir <- damr_example_dir()
 
-dt <- query_dam2(query)
+# A query already made for us.
+# It defines condition and genotype of each animal
+data(single_file_query)
+print(single_file_query)
+
+# we find and load the matching data
+dt <- query_dam2(root_dir,single_file_query)
 print(dt)
-# genotype was added to our metadata:
+
+# genotype and condition to our metadata:
 print(dt[meta=TRUE])
-# Just the first few reads, we run head() on each animal
-dt <- query_dam2(query, FUN=head)
+
+# Just the first few reads, we run `head()` on each animal
+dt <- query_dam2(root_dir, query, FUN=head)
 print(dt)
 }
 \seealso{
