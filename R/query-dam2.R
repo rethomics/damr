@@ -3,8 +3,9 @@
 #' Uses a query mechanism to get data from a DAM2 array.
 #' This is useful when using the default behaviour of TriKinetics software
 #' where data is simply appended to a single long file per monitor.
+#'
 #' @param result_dir the root directory where all daily data are saved
-#' @param query [data.table] representing a formatted query used to request data (see detail).
+#' @param query [data.frame] representing a formatted query used to request data (see detail)
 #' @param FUN function (optional) to transform the data from each animal
 #' immediately after is has been loaded.
 #' @param ... extra arguments to be passed to `FUN`
