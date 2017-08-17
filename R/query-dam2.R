@@ -80,7 +80,7 @@ query_dam2 <- function(result_dir, query, FUN=NULL, ...){
   # TODO check for uniqueness in query!!
   to_read <- q[,.(regions = list(region_id)),by=c("path","start_datetime","stop_datetime")]
   s <- to_read[,
-               list(data=list(damr:::read_dam2_file(path,
+               list(data=list(read_dam2_file(path,
                                                     regions[[1]],
                                                     start_datetime,
                                                     stop_datetime,

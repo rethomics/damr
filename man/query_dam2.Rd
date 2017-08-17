@@ -9,7 +9,7 @@ query_dam2(result_dir, query, FUN = NULL, ...)
 \arguments{
 \item{result_dir}{the root directory where all daily data are saved}
 
-\item{query}{\link{data.table} representing a formatted query used to request data (see detail).}
+\item{query}{\link{data.frame} representing a formatted query used to request data (see detail)}
 
 \item{FUN}{function (optional) to transform the data from each animal
 immediately after is has been loaded.}
