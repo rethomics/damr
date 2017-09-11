@@ -213,7 +213,7 @@ print(result_dir)
 ```
 
 ```
-## [1] "/home/quentin/R/x86_64-pc-linux-gnu-library/3.4/damr/extdata"
+## [1] "/home/travis/R/Library/damr/extdata"
 ```
 
 Then, the magic happens when we use the `query_dam2()` function:
@@ -221,6 +221,749 @@ Then, the magic happens when we use the `query_dam2()` function:
 
 ```r
 dt <- query_dam2(result_dir, two_files_query)
+```
+
+```
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+```
+
+```r
 print(dt)
 ```
 
