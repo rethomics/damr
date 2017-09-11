@@ -73,7 +73,7 @@ query_dam2 <- function(result_dir, query, FUN=NULL, ...){
   # force format for midnight dates (#6)
   q[, start_datetime := sapply(start_datetime, function(x) format(parse_datetime(x), format = "%F %T"))]
 
-  q[,experiment_id:=sprintf("%s|%s",
+  q[,experiment_id := sprintf("%s|%s",
                 start_datetime,
                  basename(path))]
 
@@ -84,6 +84,8 @@ query_dam2 <- function(result_dir, query, FUN=NULL, ...){
   q[,id:=sprintf("%02d|%s",
                  region_id,
                  experiment_id)]
+  q[, experiment_id := NULL]
+
   # TODO check for uniqueness in query!!
   to_read <- q[,.(regions = list(region_id)),by=c("path","start_datetime","stop_datetime")]
   s <- to_read[,
