@@ -5,11 +5,12 @@ Version: 0.0.0.9000
 Authors@R: c(
     person("Quentin", "geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
     )
-Description: Retreive behavioural data from the widely used Drosophila Activity Monitors.
-Depends:  R (>= 2.10)
+Description: Retreive behavioural data from the widely used Drosophila Activity Monitor System (DAMS).
+Depends:  
+    R (>= 3.00),
+    behavr
 Imports: 
-  behavr,
-  data.table,
+   data.table,
    dplyr,
    readr, 
    hms,

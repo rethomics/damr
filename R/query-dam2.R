@@ -1,3 +1,7 @@
+#' @importFrom data.table ":="
+#' @importFrom data.table "key"
+#' @import behavr
+NULL
 #' Retrieves DAM2 data from one or several continuous files
 #'
 #' Uses a query mechanism to get data from a DAM2 array.
@@ -66,10 +70,13 @@ query_dam2 <- function(result_dir, query, FUN=NULL, ...){
   q[,path:=paste(result_dir,file,sep="/")]
   q[,file:=NULL]
 
+  # force format for midnight dates (#6)
+  q[, start_datetime := sapply(start_datetime, function(x) format(parse_datetime(x), format = "%F %T"))]
 
   q[,experiment_id:=sprintf("%s|%s",
-                 start_datetime,
+                start_datetime,
                  basename(path))]
+
   # we expand query for all channels if no channel provided
   if(!"region_id" %in% cn)
     q <- q[q[,.(region_id=1:32),by=experiment_id], on="experiment_id"]
@@ -99,8 +106,10 @@ query_dam2 <- function(result_dir, query, FUN=NULL, ...){
       c("id", setdiff(colnames(q[,-"path"]), colnames(met))),
       with=F],
     on="id"]
+
   data.table::setkeyv(met,"id")
   # replace metadata
+
   behavr::setmeta(d, met)
   if(!is.null(FUN))
     d <- d[,FUN(.SD, ...),by="id"]

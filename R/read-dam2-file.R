@@ -61,13 +61,12 @@ read_dam2_file <- function(path,
           datetime = as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))
         )
 
-   # if start date is not define, t0 is the first read available, whether or not is is valid!
+   # if start date is not defined, t0 is the first read available, whether or not is is valid!
   if(is.infinite(start_datetime))
     t0 = df$datetime[1]
   else
     t0 = start_datetime
-
-  experiment_id <- paste(t0, basename(path),sep="|")
+  experiment_id <- paste(format(t0, format = "%F %T"), basename(path),sep="|")
   df <- df %>%
         dplyr::filter(status ==1) %>% # valid reads
         dplyr::distinct(datetime, .keep_all = TRUE) %>% # remove possible duplicates
@@ -88,5 +87,6 @@ read_dam2_file <- function(path,
   meta[,start_datetime:=t0]
   meta[,file:=basename(path)]
   dt[,region_id:=NULL]
+
   behavr::behavr(dt,meta)
 }
