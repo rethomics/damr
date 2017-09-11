@@ -26,13 +26,13 @@ NULL
 #' * `file` -- the location of a data file (e.g. `"Monitor3.txt"`).
 #' * `start_datetme` -- the first day and time of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
 #' * `stop_datetime` -- the last day and time of the requested experiment (e.g. `"2014-12-30  19:00:00"` or simply "2014-12-30").
-#' * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. "20").
+#' * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. `20`).
 #'   `region_id` is optional. If not provided, all 32 channels are loaded *with the same conditions*.
 #' * `???` *any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
 #'
 #' The time in data is expressed relatively to start_date.
-#' In other words, if you do circadian analysis, and your D-L transitions are at 10:00:00, you want to set
-#' `start_datetime = "YYY-MM-DD 10:00:00"`. The root directory is the folder where your files live.
+#' In other words, if you do circadian analysis, and your D-L transitions are at 09:00:00, you want to set
+#' `start_datetime = "YYY-MM-DD 09:00:00"`. The root directory is the folder where your files live.
 #' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
 #'
 #' @examples

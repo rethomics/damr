@@ -40,14 +40,14 @@ It must have  the following columns:
 \item \code{file} -- the location of a data file (e.g. \code{"Monitor3.txt"}).
 \item \code{start_datetme} -- the first day and time of the requested experiment (e.g. \code{"2014-12-28 18:00:00"}).
 \item \code{stop_datetime} -- the last day and time of the requested experiment (e.g. \code{"2014-12-30 19:00:00"} or simply "2014-12-30").
-\item \code{region_id} -- the channel (between 1 and 32) in which the animal was in (e.g. "20").
+\item \code{region_id} -- the channel (between 1 and 32) in which the animal was in (e.g. \code{20}).
 \code{region_id} is optional. If not provided, all 32 channels are loaded \emph{with the same conditions}.
 \item \code{???} \emph{any number of arbitrary columns} to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
 }
 
 The time in data is expressed relatively to start_date.
-In other words, if you do circadian analysis, and your D-L transitions are at 10:00:00, you want to set
-\code{start_datetime = "YYY-MM-DD 10:00:00"}. The root directory is the folder where your files live.
+In other words, if you do circadian analysis, and your D-L transitions are at 09:00:00, you want to set
+\code{start_datetime = "YYY-MM-DD 09:00:00"}. The root directory is the folder where your files live.
 For instance, \code{result_dir = "C:/where/I/Store/my/txt/files/"}
 }
 \examples{
