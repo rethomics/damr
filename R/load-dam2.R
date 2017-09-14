@@ -2,7 +2,7 @@
 #'
 #' Uses "linked metadata" to load data from DAM2 arrays.
 #'
-#' @param metadata [data.frame] representing a formatted query used to request data (see detail)
+#' @param metadata [data.table::data.table] used to load data (see detail)
 #' @param FUN function (optional) to transform the data from each animal
 #' immediately after is has been loaded.
 #' @param ... extra arguments to be passed to `FUN`
