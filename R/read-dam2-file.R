@@ -1,9 +1,3 @@
-#' @importFrom magrittr "%>%"
-#' @importFrom data.table ":="
-
-DAM2_COLS <-  as.list(c("i", "c", "c","i", rep("_",6), rep("i",32)))
-names(DAM2_COLS) <- c("idx", "date", "time","status", sprintf("no_data_%02d", 1:6), sprintf("channel_%02d", 1:32))
-
 #' Reads data from a single DAM2 file
 #'
 #' This function retreives activity data in a DAM2 file.
@@ -25,9 +19,10 @@ names(DAM2_COLS) <- c("idx", "date", "time","status", sprintf("no_data_%02d", 1:
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
 #' @examples
 #' path <- damr_example("M064.txt")
-#' dt <- read_dam2_file(path, region_id=c(1:3), start_datetime="2017-06-30 15:00:00")
+#' dt <- read_dam2_file(path, region_id = c(1:3), start_datetime = "2017-06-30 15:00:00")
 #' print(dt)
-#' @seealso [query_dam2] to load data from many files and biological conditions using a query system
+#' @seealso
+#' [load_dam2]  == to load data from many files and biological conditions using metadata
 #' @export
 read_dam2_file <- function(path,
                             region_id=1:32,
@@ -85,7 +80,10 @@ read_dam2_file <- function(path,
 
   meta[,experiment_id := experiment_id]
   meta[,start_datetime:=t0]
-  meta[,file:=basename(path)]
+
+  file_info <- meta[,.(file_info =  list(list(path = path, file = basename(path)))), by="id"]
+  meta <- file_info[meta]
+  #meta <- met[,file:=basename(path)]
   dt[,region_id:=NULL]
 
   behavr::behavr(dt,meta)
