@@ -14,6 +14,14 @@ test_that("load_dam2 works as expected on two files", {
   q <- link_dam2_metadata(metadata,root_dir)
   dt <- load_dam2(q)
 
+  met <- dt[meta=T]
+  met <- met[
+    q[,
+             c("id", setdiff(colnames(q), colnames(met))),
+             with=F],
+    on="id"]
+
+
   # we have the data from query at the right place
   expect_identical(dt[meta=TRUE][,genotype,keyby=region_id], metadata[,genotype,keyby=region_id])
 

@@ -16,10 +16,10 @@ a \link[data.table:data.table]{data.table::data.table} with the same rows as x, 
 }
 \description{
 This function checks and add columns to DAM2 metadata.
-The new columns are necessary to locate the result files, and allocate individual unique identifiers.
+This way, if can be subsequenctly loaded (via \link{load_dam2}).
 }
 \details{
-These function will link augment metadata from two different types of inputs:
+These function will augment metadata from two different types of inputs:
 \enumerate{
 \item A \link{data.frame} (recomended)
 In this case, the function will try to match requested data with data available on \code{result_dir}.

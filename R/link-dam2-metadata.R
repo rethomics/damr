@@ -1,15 +1,13 @@
-
-
 #' Link DAM2 metadata to result files
 #'
 #' This function checks and add columns to DAM2 metadata.
-#' The new columns are necessary to locate the result files, and allocate individual unique identifiers.
+#' This way, if can be subsequenctly loaded (via [load_dam2]).
 #'
 #' @param x object such as a [data.frame], or the name of a file (see detail)
 #' @param result_dir the root directory where all daily data are saved
 #' @return a [data.table::data.table] with the same rows as x, and extra columns for further data loading
 #' @details
-#' These function will link augment metadata from two different types of inputs:
+#' These function will augment metadata from two different types of inputs:
 #' 1. A [data.frame] (recomended)
 #' In this case, the function will try to match requested data with data available on `result_dir`.
 #' The provided [data.table] has typically one row per requested individial and the columns
@@ -69,9 +67,9 @@ link_dam2_metadata <- function(x, result_dir){
   if(!"region_id" %in% cn)
     q <- q[q[,.(region_id=1:32),by=experiment_id], on="experiment_id"]
 
-  q[,id:=sprintf("%02d|%s",
-                 region_id,
-                 experiment_id)]
+  q[,id := as.factor(sprintf("%s|%02d",
+                 experiment_id,
+                 region_id))]
   q[, experiment_id := NULL]
 
   data.table::setkeyv(q, "id")

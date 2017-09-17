@@ -16,7 +16,7 @@ test_that("link_dam2_metadata works as expected on single files", {
   expect_identical(colnames(q), c("id", "file_info", colnames(metadata)[-1]))
 
   # implicit region 1:32
-  query = data.table::data.table(file="M064.txt",
+  metadata = data.table::data.table(file="M064.txt",
                                  # note the time (10:00) is added as reference time
                                  start_datetime = c("2017-07-01 10:00:00"),
                                  stop_datetime = "2017-07-07")

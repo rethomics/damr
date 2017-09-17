@@ -8,9 +8,9 @@ Authors@R: c(
 Description: Retreive behavioural data from the widely used Drosophila Activity Monitor System (DAMS).
 Depends:  
     R (>= 3.00),
-    behavr
+    behavr,
+    data.table
 Imports: 
-   data.table,
    dplyr,
    readr, 
    hms,

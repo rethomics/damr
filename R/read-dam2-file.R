@@ -68,7 +68,7 @@ read_dam2_file <- function(path,
         dplyr::select(dplyr::matches("(channel)|(datetime)")) %>%
         dplyr::select("0"=dplyr::starts_with("channel_"), dplyr::everything()) %>%
         tidyr::gather(channel,activity,-datetime) %>%
-        dplyr::transmute(id= sprintf("%02d|%s",as.integer(channel),experiment_id),
+        dplyr::transmute(id= as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
                          region_id = as.integer(channel),
                          t=hms::as.hms(datetime-t0),
                          activity=activity

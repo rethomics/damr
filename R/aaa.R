@@ -1,7 +1,6 @@
 #' @importFrom magrittr "%>%"
-#' @importFrom data.table ":="
-#' @importFrom data.table "key"
 #' @import behavr
+#' @import data.table
 NULL
 
 DAM2_COLS <-  as.list(c("i", "c", "c","i", rep("_",6), rep("i",32)))
