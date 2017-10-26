@@ -70,7 +70,7 @@ read_dam2_file <- function(path,
         tidyr::gather(channel,activity,-datetime) %>%
         dplyr::transmute(id= as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
                          region_id = as.integer(channel),
-                         t=hms::as.hms(datetime-t0),
+                         t=as.numeric(datetime-t0),
                          activity=activity
                          )
   dt <- data.table::data.table(df,key="id")
