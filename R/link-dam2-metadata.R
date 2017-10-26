@@ -10,29 +10,21 @@
 #' These function will augment metadata from two different types of inputs:
 #' 1. A [data.frame] (recomended)
 #' In this case, the function will try to match requested data with data available on `result_dir`.
-#' The provided [data.table] has typically one row per requested individial and the columns
+#' The provided [data.frame] or [data.table] has typically one row per requested individial and the columns
 #' (not necessarily in this order):
-#'     * `machine_name` -- the name of the machine in which the individual was (e.g. `"ETHOSCOPE_001"`)
-#'     * `date` -- the start date of the experiment formated as `"YYYY-MM-DD"`
-#'     * `region_id` -- the ROI in which the animal was. When *not provided, all regions are queried*.
-#'     * `time` -- the start time of the experiment formated as "HH:MM:SS".
-#'        When *not provided*, and multiple expriment for the same machine exist, *only the last one is loaded*.
-#'     * `???` -- any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
+#'     * `file` -- the name of a data file (e.g. `"Monitor3.txt"`), it has to exists in result_dir.
+#'     * `start_datetime` -- the first day **and time** of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
+#'     * `stop_datetime` -- the last day and time of the requested experiment (e.g. `"2014-12-30  19:00:00"` or simply `"2014-12-30"`).
+#'     * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. `20`).
+#'   `region_id` is optional. If not provided, all 32 channels are loaded *with the same conditions*.
+#'     * `???` *any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
+#' 
 #' 2. The name of a CSV file that contains a table as described in `1`.
 #'
-#' Each row of the metadata describes one individual with one set of conditions (when `region_id` is specified),
-#' or in each monitor (when it is not).
-#' It must have  the following columns:
-#' * `file` -- the location of a data file (e.g. `"Monitor3.txt"`).
-#' * `start_datetime` -- the first day **and time** of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
-#' * `stop_datetime` -- the last day and time of the requested experiment (e.g. `"2014-12-30  19:00:00"` or simply `"2014-12-30"`).
-#' * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. `20`).
-#'   `region_id` is optional. If not provided, all 32 channels are loaded *with the same conditions*.
-#' * `???` *any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
-#'
+#' 
 #' The time in data is expressed relatively to start_date.
 #' In other words, if you do circadian analysis, and your `D->L`` transitions are at 09:00:00, you want to set
-#' `start_datetime = "YYY-MM-DD 09:00:00"`. The root directory is the folder where your files live.
+#' `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
 #' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
 #' @seealso
 #' * [load_dam2] -- to subsequently load the actual data
