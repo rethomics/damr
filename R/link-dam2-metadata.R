@@ -1,7 +1,7 @@
 #' Link DAM2 metadata to result files
 #'
 #' This function checks and add columns to DAM2 metadata.
-#' This way, if can be subsequenctly loaded (via [load_dam2]).
+#' This way, if can subsequently be loaded (via [load_dam2]).
 #'
 #' @param x object such as a [data.frame], or the name of a file (see detail)
 #' @param result_dir the root directory where all daily data are saved
@@ -18,10 +18,10 @@
 #'     * `region_id` -- the channel (between 1 and 32) in which the animal was in (e.g. `20`).
 #'   `region_id` is optional. If not provided, all 32 channels are loaded *with the same conditions*.
 #'     * `???` *any number of arbitrary columns* to associate `conditions`/`treatments`/`genotypes`/... to the previous columns.
-#' 
+#'
 #' 2. The name of a CSV file that contains a table as described in `1`.
 #'
-#' 
+#'
 #' The time in data is expressed relatively to start_date.
 #' In other words, if you do circadian analysis, and your `D->L`` transitions are at 09:00:00, you want to set
 #' `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.

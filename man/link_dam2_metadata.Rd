@@ -16,40 +16,28 @@ a \link[data.table:data.table]{data.table::data.table} with the same rows as x, 
 }
 \description{
 This function checks and add columns to DAM2 metadata.
-This way, if can be subsequenctly loaded (via \link{load_dam2}).
+This way, if can subsequently be loaded (via \link{load_dam2}).
 }
 \details{
 These function will augment metadata from two different types of inputs:
 \enumerate{
 \item A \link{data.frame} (recomended)
 In this case, the function will try to match requested data with data available on \code{result_dir}.
-The provided \link{data.table} has typically one row per requested individial and the columns
+The provided \link{data.frame} or \link{data.table} has typically one row per requested individial and the columns
 (not necessarily in this order):
 \itemize{
-\item \code{machine_name} -- the name of the machine in which the individual was (e.g. \code{"ETHOSCOPE_001"})
-\item \code{date} -- the start date of the experiment formated as \code{"YYYY-MM-DD"}
-\item \code{region_id} -- the ROI in which the animal was. When \emph{not provided, all regions are queried}.
-\item \code{time} -- the start time of the experiment formated as "HH:MM:SS".
-When \emph{not provided}, and multiple expriment for the same machine exist, \emph{only the last one is loaded}.
-\item \code{???} -- any number of arbitrary columns* to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
-}
-\item The name of a CSV file that contains a table as described in \code{1}.
-}
-
-Each row of the metadata describes one individual with one set of conditions (when \code{region_id} is specified),
-or in each monitor (when it is not).
-It must have  the following columns:
-\itemize{
-\item \code{file} -- the location of a data file (e.g. \code{"Monitor3.txt"}).
+\item \code{file} -- the name of a data file (e.g. \code{"Monitor3.txt"}), it has to exists in result_dir.
 \item \code{start_datetime} -- the first day \strong{and time} of the requested experiment (e.g. \code{"2014-12-28 18:00:00"}).
 \item \code{stop_datetime} -- the last day and time of the requested experiment (e.g. \code{"2014-12-30 19:00:00"} or simply \code{"2014-12-30"}).
 \item \code{region_id} -- the channel (between 1 and 32) in which the animal was in (e.g. \code{20}).
 \code{region_id} is optional. If not provided, all 32 channels are loaded \emph{with the same conditions}.
 \item \code{???} \emph{any number of arbitrary columns} to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
 }
+\item The name of a CSV file that contains a table as described in \code{1}.
+}
 
 The time in data is expressed relatively to start_date.
-In other words, if you do circadian analysis, and your \code{D->L`` transitions are at 09:00:00, you want to set}start_datetime = "YYY-MM-DD 09:00:00"\code{. The root directory is the folder where your files live. For instance,}result_dir = "C:/where/I/Store/my/txt/files/"`
+In other words, if you do circadian analysis, and your \code{D->L`` transitions are at 09:00:00, you want to set}start_datetime = "YYY-MM-DD 09:00:00"\code{. The result_directory is the folder where your files live. For instance,}result_dir = "C:/where/I/Store/my/txt/files/"`
 }
 \references{
 \itemize{
