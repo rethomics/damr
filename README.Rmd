@@ -4,13 +4,10 @@
 
 <!-- [![Coverage Status](https://img.shields.io/codecov/c/github/tidyverse/hms/master.svg)](https://codecov.io/github/tidyverse/hms?branch=master) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/hms)](https://cran.r-project.org/package=hms) -->
 
-`damr` is part of the [rethomics framework](todo.html).
+`damr` is part of the [rethomics framework](https://rethomics.github.io/).
 This README is a short explanation of the basics of `damr`.
-A [comprehensive documentation](todo.html) of rethomics is also available.
-
-## Drosophila Activity Monitor
-todo, say something about what DAMS is
- 
+A [comprehensive documentation](https://rethomics.github.io/damr.html) of rethomics is also available.
+We also provide a [conventional pdf documentation](damr.pdf).
 
 
 ## Installation
