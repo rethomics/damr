@@ -3,7 +3,20 @@ find_dam2_first_last_lines <- function(file,
                                        stop_datetime=+Inf,
                                        tz="UTC"){
   start_datetime <- parse_datetime(start_datetime,tz=tz)
+
+  has_time <- TRUE
+
+  if(is.character(stop_datetime)){
+    if(any(grep("^\\s*[0-9]{4}-[0-9]{2}-[0-9]{2}\\s*$", stop_datetime)))
+      has_time <- FALSE
+  }
+
+
   stop_datetime <- parse_datetime(stop_datetime,tz=tz)
+
+  # we stop_date should be exclusive
+  if(!has_time)
+    stop_datetime <- stop_datetime + days(1)
 
   if(start_datetime > stop_datetime)
     stop("start_datetime is greater than stop_datetime. Cannot fetch any data!")
@@ -26,21 +39,21 @@ find_dam2_first_last_lines <- function(file,
   ## duplicated time stamps, clock changes?
   n_dups <- sum(duplicated(datetimes_dt$datetime_posix))
   if(n_dups > 50){
-    stop("More than 50 duplicated dates entries in the queries file.
+    stop("More than 50 duplicated dates entries in the metadata file.
          This is a likely instance of the recording computer changing time
          (e.g. between winter and summer time)")
   }
 
   if(n_dups > 0){
-    warning(sprintf("Some of the dates are repeated between successive measument in %s.",
+    warning(sprintf("Some of the dates are repeated between successive measuments in %s.",
                     file))
   }
 
   sampling_periods <- unique(na.omit(datetimes_dt$diff_t))
   if(any(abs(sampling_periods) >= 3600))
     stop("Time has jumped for an hour or more!
-          No valid data duting this time.
-          Possibly device got disconected, of change to summer/winter time")
+          No valid data during this time.
+          Possibly, device was disconected or maybe a change from summer to winter time")
 
   ## irregular time stamps, possible missing reads
   n_sampling_periods <- length(sampling_periods)

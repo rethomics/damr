@@ -32,10 +32,36 @@ test_that("Start and stop dates work as expected when setting a stop", {
   EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-06-30 14:55:00", tz="UTC")
   EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-01 13:51:00", tz="UTC")
 
-  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-06-30 14:55:00", stop_datetime = "2017-07-01 13:51:00", tz="UTC")
+  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-06-30 14:55:00",
+                                         stop_datetime = "2017-07-01 13:51:00", tz="UTC")
+
+  expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
+  expect_equal(damr:::parse_datetime(d$datetime[2]), EXPECTED_LAST_READ)
+})
+
+test_that("Start date is inclusive when time not specified", {
+  FILE <- damr_example("M064.txt")
+  EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-07-01", tz="UTC")
+  EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-02 00:00:00", tz="UTC")
+
+  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-07-01",
+                                         stop_datetime = "2017-07-01", tz="UTC")
 
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
 })
+
+
+test_that("Stop date is inclusive when time not specified", {
+  FILE <- damr_example("M064.txt")
+  EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-06-30 14:55:00", tz="UTC")
+  EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-02 00:00:00", tz="UTC")
+
+  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-06-30 14:55:00",
+                                               stop_datetime = "2017-07-01", tz="UTC")
+
+  expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
+})
+
 
 
 test_that("Error when dates are inconsistent", {
@@ -58,7 +84,6 @@ test_that("Error when dates are inconsistent", {
 })
 
 
-
 test_that("Error for daylight saving bug", {
   FILE <- damr_example("M064_DLS_bug1.txt")
   expect_error(damr:::find_dam2_first_last_lines(FILE),
@@ -72,7 +97,6 @@ test_that("Error for daylight saving bug", {
   expect_error(damr:::find_dam2_first_last_lines(FILE),
                  regexp = "[Tt]ime has jumped")
 })
-
 
 
 test_that("ZIP wiles can be processed", {
