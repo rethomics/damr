@@ -12,20 +12,19 @@ find_dam2_first_last_lines <- function(file,
                                  col_types = readr::cols_only(date="c", time="c",status="i"),
                                  progress = F)
 
-  datetimes_df <-
-    datetimes_df %>%
-    dplyr::mutate(id=1:n()) %>%
-    dplyr::filter(status==1) %>%
-    dplyr::transmute(
-      id=id,
-      datetime = paste(date,time, sep=" "),
-      datetime = as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz)),
-      diff_t = as.numeric(datetime-dplyr::lag(datetime), unit="secs")
-    )  %>%
-    dplyr::filter(datetime >= start_datetime & datetime <= stop_datetime)
+    datetimes_dt <- data.table::as.data.table(datetimes_df)
+  datetimes_dt[, id := 1:.N]
+  datetimes_dt <- datetimes_dt[status == 1]
+  datetimes_dt <- datetimes_dt[, datetime := paste(date,time, sep=" ")]
+  suppressWarnings(
+    datetimes_dt <- datetimes_dt[, datetime_posix  := as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))]
+  )
+  datetimes_dt <- datetimes_dt[datetime_posix >= start_datetime & datetime_posix <= stop_datetime]
+  datetimes_dt[, diff_t := as.numeric(datetime_posix - dplyr::lag(datetime_posix), unit="secs")]
+
 
   ## duplicated time stamps, clock changes?
-  n_dups <- sum(duplicated(datetimes_df$datetime))
+  n_dups <- sum(duplicated(datetimes_dt$datetime_posix))
   if(n_dups > 50){
     stop("More than 50 duplicated dates entries in the queries file.
          This is a likely instance of the recording computer changing time
@@ -37,7 +36,7 @@ find_dam2_first_last_lines <- function(file,
                     file))
   }
 
-  sampling_periods <- unique(na.omit(datetimes_df$diff_t))
+  sampling_periods <- unique(na.omit(datetimes_dt$diff_t))
   if(any(abs(sampling_periods) >= 3600))
     stop("Time has jumped for an hour or more!
           No valid data duting this time.
@@ -50,10 +49,11 @@ find_dam2_first_last_lines <- function(file,
     warning(sprintf("The sampling period is not always regular in %s.
                     Some reads must have been skipped.",file))
 
-  first_and_last <- datetimes_df %>%
-    dplyr::filter(row_number()==1 | row_number()==n())
+  first_and_last <- datetimes_dt[c(1, .N)]
 
   if(nrow(first_and_last) !=2)
     stop("No data in selected date range")
+  first_and_last[, datetime := NULL]
+  setnames(first_and_last, "datetime_posix", "datetime")
   first_and_last
 }

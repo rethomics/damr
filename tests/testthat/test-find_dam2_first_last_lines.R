@@ -11,6 +11,7 @@ test_that("Start and stop dates work as expected when reading whole file with er
   # no warning if we skip the first heterogeneous read
   expect_warning(damr:::find_dam2_first_last_lines(FILE, start_datetime = EXPECTED_FIRST_READ+60, stop_datetime = +Inf, tz="UTC"),
                  regexp = NA)
+
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
   # last read are masked
   expect_equal(damr:::parse_datetime(d$datetime[2]), EXPECTED_LAST_READ)
@@ -80,3 +81,11 @@ test_that("ZIP wiles can be processed", {
   d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-06-30 14:55:00", stop_datetime = +Inf, tz="UTC")
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
 })
+
+
+test_that("https://github.com/rethomics/damr/issues/11", {
+  FILE <- damr_example("issue_11.txt.zip")
+  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-07-11 07:59:00", stop_datetime = +Inf, tz="UTC")
+  expect_equal(d[,paste(date, time, sep= " ")], c("11 Jul 17 07:59:00", "11 Jul 17 09:27:00"))
+})
+
