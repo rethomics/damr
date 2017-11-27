@@ -11,11 +11,7 @@ Depends:
     behavr,
     data.table
 Imports: 
-   dplyr,
-   readr, 
-   hms,
-   tidyr,
-   magrittr
+   readr
 Suggests: 
     testthat,
     covr,

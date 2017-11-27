@@ -33,7 +33,7 @@ find_dam2_first_last_lines <- function(file,
     datetimes_dt <- datetimes_dt[, datetime_posix  := as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))]
   )
   datetimes_dt <- datetimes_dt[datetime_posix >= start_datetime & datetime_posix <= stop_datetime]
-  datetimes_dt[, diff_t := as.numeric(datetime_posix - dplyr::lag(datetime_posix), unit="secs")]
+  datetimes_dt[, diff_t := as.numeric(datetime_posix - shift(datetime_posix), unit="secs")]
 
 
   ## duplicated time stamps, clock changes?

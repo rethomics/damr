@@ -50,31 +50,35 @@ read_dam2_file <- function(path,
                                  progress = F)
 
 #  return(start_datetime)
-  df <- df %>%
-        dplyr::mutate(
-          datetime = paste(date,time, sep=" "),
-          datetime = as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))
-        )
+  df <- as.data.table(df)
+  df <- df[, datetime := paste(date,time, sep=" ")]
+  suppressWarnings(
+    df <- df[, datetime_posix  := as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))]
+  )
+  df[, datetime := NULL]
+  setnames(df, "datetime_posix", "datetime")
 
    # if start date is not defined, t0 is the first read available, whether or not is is valid!
   if(is.infinite(start_datetime))
     t0 = df$datetime[1]
   else
     t0 = start_datetime
+
   experiment_id <- paste(format(t0, format = "%F %T"), basename(path),sep="|")
-  df <- df %>%
-        dplyr::filter(status ==1) %>% # valid reads
-        dplyr::distinct(datetime, .keep_all = TRUE) %>% # remove possible duplicates
-        dplyr::select(dplyr::matches("(channel)|(datetime)")) %>%
-        dplyr::select("0"=dplyr::starts_with("channel_"), dplyr::everything()) %>%
-        tidyr::gather(channel,activity,-datetime) %>%
-        dplyr::transmute(id= as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
-                         region_id = as.integer(channel),
-                         t=as.numeric(datetime-t0),
-                         activity=activity
-                         )
-  dt <- data.table::data.table(df,key="id")
-  # see above todo. we could do the filtering at readtime
+  df <- df[status == 1]
+  df <- unique(df, by="datetime")
+  df <- df[, (colnames(df) %like% "(channel)|(datetime)"), with=F]
+  setnames(df,
+           grep("channel_", colnames(df), value = T),
+           gsub("channel_", "0", grep("channel_", colnames(df), value = T)))
+  df <- melt(df, id="datetime", variable.name = "channel", value.name = "activity")
+  dt <- df[ ,. (id = as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
+           region_id = as.integer(channel),
+          t = as.numeric(datetime-t0),
+          activity=activity)]
+
+  setkeyv(dt, "id")
+
   dt <- dt[region_id %in% regions]
   meta <- unique(dt[, c("id","region_id")],by="id")
 

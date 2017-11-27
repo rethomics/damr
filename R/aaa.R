@@ -1,4 +1,3 @@
-#' @importFrom magrittr "%>%"
 #' @import behavr
 #' @import data.table
 NULL
