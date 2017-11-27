@@ -16,7 +16,7 @@ find_dam2_first_last_lines <- function(file,
 
   # we stop_date should be exclusive
   if(!has_time)
-    stop_datetime <- stop_datetime + days(1)
+    stop_datetime <- stop_datetime + days(1) - .01
 
   if(start_datetime > stop_datetime)
     stop("start_datetime is greater than stop_datetime. Cannot fetch any data!")

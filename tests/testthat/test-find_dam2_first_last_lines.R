@@ -42,12 +42,13 @@ test_that("Start and stop dates work as expected when setting a stop", {
 test_that("Start date is inclusive when time not specified", {
   FILE <- damr_example("M064.txt")
   EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-07-01", tz="UTC")
-  EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-02 00:00:00", tz="UTC")
+  EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-01 23:59:00", tz="UTC")
 
   d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-07-01",
                                          stop_datetime = "2017-07-01", tz="UTC")
 
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
+  expect_equal(damr:::parse_datetime(d$datetime[2]), EXPECTED_LAST_READ)
 })
 
 
