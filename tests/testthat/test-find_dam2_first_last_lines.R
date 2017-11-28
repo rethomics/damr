@@ -8,13 +8,18 @@ test_that("Start and stop dates work as expected when reading whole file with er
   # first read it at 2017-06-30 14:43:08, instead of 2017-06-30 14:43:00
   expect_warning(d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = -Inf, stop_datetime = +Inf, tz="UTC"),
                  regexp = "The sampling period is not always regular")
-  # no warning if we skip the first heterogeneous read
-  #expect_warning(damr:::find_dam2_first_last_lines(FILE, start_datetime = EXPECTED_FIRST_READ+60, stop_datetime = +Inf, tz="UTC"),
-  #               regexp = NA)
+
 
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
-  # last read are masked
   expect_equal(damr:::parse_datetime(d$datetime[2]), EXPECTED_LAST_READ)
+
+  EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-06-30 14:44:08", tz="UTC")
+
+  #no warning if we skip the heterogeneous read
+  expect_silent(damr:::find_dam2_first_last_lines( FILE,
+                                                   start_datetime = EXPECTED_FIRST_READ,
+                                                   stop_datetime = +Inf, tz="UTC"))
+
 })
 
 
