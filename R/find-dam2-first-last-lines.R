@@ -83,7 +83,7 @@ fread_zip <- function(zipfile, ...) {
 
   ## Create the temporary directory or flush CSVs if it exists already
   if (!file.exists(tempdir())) {dir.create(tempdir())
-  } else {file.remove(list.files(tempdir(), full = T, pattern = "*.csv"))
+  } else {file.remove(list.files(tempdir(), full = T, pattern = "*.csv|*.txt"))
   }
 
   ## Unzip the file into the dir
@@ -91,13 +91,13 @@ fread_zip <- function(zipfile, ...) {
 
   ## Get path to file
   file <- list.files(tempdir(), pattern = "*.csv|*.txt", full.names = T)
+    ## Throw an error if there's more than one
+  if(length(file)>1) stop(paste("More than one data file inside zip:\n",file , collapse = ", "))
 
-  ## Throw an error if there's more than one
-  if(length(file)>1) stop("More than one data file inside zip")
-
-  ## Read the file
-  fread(file,
-        #na.strings = c(""), # read empty strings as NA
-        ...
-  )
+    ## Read the file
+    out <- fread(file,
+          #na.strings = c(""), # read empty strings as NA
+          ...
+    )
+  out
 }
