@@ -41,7 +41,8 @@ read_dam2_file <- function(path,
   first_line = first_last_lines$id[1]
   last_line = first_last_lines$id[2]
   col_types=do.call(readr::cols_only, DAM2_COLS)
-  # todo we do not have to read all regions and hen filter.
+
+  # todo we do not have to read all regions and when filter.
   # We can already load only the channels we want here.
   df <-readr::read_tsv(path, col_names = names(DAM2_COLS),
                                  col_types = col_types,

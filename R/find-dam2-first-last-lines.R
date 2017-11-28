@@ -21,11 +21,16 @@ find_dam2_first_last_lines <- function(file,
   if(start_datetime > stop_datetime)
     stop("start_datetime is greater than stop_datetime. Cannot fetch any data!")
 
-  datetimes_df <-readr::read_tsv(file, col_names = names(DAM2_COLS),
-                                 col_types = readr::cols_only(date="c", time="c",status="i"),
-                                 progress = F)
+  if(tools::file_ext(file) == "zip")
+    fun <- fread_zip
+  else
+    fun <- fread
 
-    datetimes_dt <- data.table::as.data.table(datetimes_df)
+  cols_to_keep <- which(names(DAM2_COLS) %in% c("date", "time", "status"))
+  datetimes_dt <- fun(file,
+                        col.names = names(DAM2_COLS)[cols_to_keep],
+                        select =cols_to_keep)
+
   datetimes_dt[, id := 1:.N]
   datetimes_dt <- datetimes_dt[status == 1]
   datetimes_dt <- datetimes_dt[, datetime := paste(date,time, sep=" ")]
@@ -69,4 +74,30 @@ find_dam2_first_last_lines <- function(file,
   first_and_last[, datetime := NULL]
   setnames(first_and_last, "datetime_posix", "datetime")
   first_and_last
+}
+
+# from https://stackoverflow.com/questions/8986818/automate-zip-file-reading-in-r
+fread_zip <- function(zipfile, ...) {
+  # Function reads data from a zipped csv file
+  # Uses fread from the data.table package
+
+  ## Create the temporary directory or flush CSVs if it exists already
+  if (!file.exists(tempdir())) {dir.create(tempdir())
+  } else {file.remove(list.files(tempdir(), full = T, pattern = "*.csv"))
+  }
+
+  ## Unzip the file into the dir
+  unzip(zipfile, exdir=tempdir())
+
+  ## Get path to file
+  file <- list.files(tempdir(), pattern = "*.csv|*.txt", full.names = T)
+
+  ## Throw an error if there's more than one
+  if(length(file)>1) stop("More than one data file inside zip")
+
+  ## Read the file
+  fread(file,
+        #na.strings = c(""), # read empty strings as NA
+        ...
+  )
 }

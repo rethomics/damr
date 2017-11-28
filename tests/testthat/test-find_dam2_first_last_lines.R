@@ -6,7 +6,10 @@ test_that("Start and stop dates work as expected when reading whole file with er
   EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-03 00:05:00", tz="UTC")
 
   # first read it at 2017-06-30 14:43:08, instead of 2017-06-30 14:43:00
-  expect_warning(d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = -Inf, stop_datetime = +Inf, tz="UTC"),
+  expect_warning(d <- damr:::find_dam2_first_last_lines(FILE,
+                                                        start_datetime = -Inf,
+                                                        stop_datetime = +Inf,
+                                                        tz="UTC"),
                  regexp = "The sampling period is not always regular")
 
 
@@ -49,7 +52,8 @@ test_that("Start date is inclusive when time not specified", {
   EXPECTED_FIRST_READ <- damr:::parse_datetime("2017-07-01", tz="UTC")
   EXPECTED_LAST_READ <- damr:::parse_datetime("2017-07-01 23:59:00", tz="UTC")
 
-  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-07-01",
+  d <- damr:::find_dam2_first_last_lines(FILE,
+                                         start_datetime = "2017-07-01",
                                          stop_datetime = "2017-07-01", tz="UTC")
 
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
@@ -112,10 +116,12 @@ test_that("ZIP wiles can be processed", {
   expect_equal(damr:::parse_datetime(d$datetime[1]), EXPECTED_FIRST_READ)
 })
 
-
-test_that("https://github.com/rethomics/damr/issues/11", {
-  FILE <- damr_example("issue_11.txt.zip")
-  d <- damr:::find_dam2_first_last_lines(FILE, start_datetime = "2017-07-11 07:59:00", stop_datetime = +Inf, tz="UTC")
-  expect_equal(d[,paste(date, time, sep= " ")], c("11 Jul 17 07:59:00", "11 Jul 17 09:27:00"))
-})
+#
+# test_that("https://github.com/rethomics/damr/issues/11", {
+#   FILE <- damr_example("issue_11.txt.zip")
+#   d <- damr:::find_dam2_first_last_lines(FILE,
+#                                          start_datetime = "2017-07-11 07:59:00",
+#                                          stop_datetime = +Inf, tz="UTC")
+#   expect_equal(d[,paste(date, time, sep= " ")], c("11 Jul 17 07:59:00", "11 Jul 17 09:27:00"))
+# })
 
