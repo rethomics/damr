@@ -73,9 +73,10 @@ read_dam2_file <- function(path,
            grep("channel_", colnames(df), value = T),
            gsub("channel_", "0", grep("channel_", colnames(df), value = T)))
   df <- melt(df, id="datetime", variable.name = "channel", value.name = "activity")
+
   dt <- df[ ,. (id = as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
            region_id = as.integer(channel),
-          t = as.numeric(datetime-t0),
+          t = as.numeric(datetime-t0, units = "secs"),
           activity=activity)]
 
   setkeyv(dt, "id")
@@ -84,7 +85,7 @@ read_dam2_file <- function(path,
   meta <- unique(dt[, c("id","region_id")],by="id")
 
   meta[,experiment_id := experiment_id]
-  meta[,start_datetime:=t0]
+  meta[,start_datetime := t0]
 
   file_info <- meta[,.(file_info =  list(list(path = path, file = basename(path)))), by="id"]
   meta <- file_info[meta]
