@@ -42,5 +42,7 @@ dt <- read_dam2_file(path, region_id = c(1:3), start_datetime = "2017-06-30 15:0
 print(dt)
 }
 \seealso{
-\link{load_dam2}  == to load data from many files and biological conditions using metadata
+\itemize{
+\item \link{load_dam2} --  to load data from many files and biological conditions using metadata (recommended)
+}
 }

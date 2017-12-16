@@ -38,7 +38,7 @@
 #' * [behavr::behavr] --  the class of the resulting object
 #' * [read_dam2_file] --  to load data from a single file (without metadata)
 #' @references
-#' * [behavr tutorial](https://rethomics.github.io/behavr.html) -- how to work with the obtained [behavr] table
+#' * [damr tutorial](https://rethomics.github.io/damr.html) -- how to use this function in practice
 #' @export
 load_dam2 <- function(metadata, FUN=NULL, ...){
   tz="UTC"

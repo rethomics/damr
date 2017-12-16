@@ -53,7 +53,7 @@ print(dt)
 }
 \references{
 \itemize{
-\item \href{https://rethomics.github.io/behavr.html}{behavr tutorial} -- how to work with the obtained \link{behavr} table
+\item \href{https://rethomics.github.io/damr.html}{damr tutorial} -- how to use this function in practice
 }
 }
 \seealso{
