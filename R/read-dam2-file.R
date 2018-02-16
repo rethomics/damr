@@ -24,41 +24,42 @@
 #' @seealso
 #'  * [load_dam2] --  to load data from many files and biological conditions using metadata (recommended)
 #' @export
-read_dam2_file <- function(path,
+# read_dam2_file <- function(path,
                             region_id=1:32,
                             start_datetime=-Inf,
                             stop_datetime=+Inf,
                             tz="UTC"){
   # todo check whether region has duplicates/ is in range
-  regions <- region_id
   start_datetime <- parse_datetime(start_datetime,tz=tz)
   stop_datetime <- parse_datetime(stop_datetime,tz=tz)
 
-  first_last_lines <- find_dam2_first_last_lines(path,
+  first_last_lines <- find_dam_first_last_lines(path,
                                                  start_datetime,
                                                  stop_datetime,
                                                  tz)
   first_line = first_last_lines$id[1]
   last_line = first_last_lines$id[2]
-  col_types=do.call(readr::cols_only, DAM2_COLS)
+  col_types=do.call(readr::cols_only, DAM5_COLS)
 
   # todo we do not have to read all regions and when filter.
   # We can already load only the channels we want here.
-  df <-readr::read_tsv(path, col_names = names(DAM2_COLS),
+  df <-readr::read_tsv(path, col_names = names(DAM5_COLS),
                                  col_types = col_types,
-                                 skip = first_line-1,
-                                 n_max = last_line-first_line+1,
+                                 skip = first_line - 1,
+                                 n_max = last_line - first_line + 1,
                                  progress = F)
 
 #  return(start_datetime)
   df <- as.data.table(df)
   df <- df[, datetime := paste(date,time, sep=" ")]
+
   suppressWarnings(
     df <- df[, datetime_posix  := as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))]
   )
   df[, datetime := NULL]
   setnames(df, "datetime_posix", "datetime")
 
+  df[, data_type := DATA_TYPE_NAMES[as.character(data_type)]]
    # if start date is not defined, t0 is the first read available, whether or not is is valid!
   if(is.infinite(start_datetime))
     t0 = df$datetime[1]
@@ -66,22 +67,11 @@ read_dam2_file <- function(path,
     t0 = start_datetime
 
   experiment_id <- paste(format(t0, format = "%F %T"), basename(path),sep="|")
-  df <- df[status == 1]
-  df <- unique(df, by="datetime")
-  df <- df[, (colnames(df) %like% "(channel)|(datetime)"), with=F]
-  setnames(df,
-           grep("channel_", colnames(df), value = T),
-           gsub("channel_", "0", grep("channel_", colnames(df), value = T)))
-  df <- melt(df, id="datetime", variable.name = "channel", value.name = "activity")
-
-  dt <- df[ ,. (id = as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
-           region_id = as.integer(channel),
-          t = as.numeric(datetime-t0, units = "secs"),
-          activity=activity)]
+  df <- df[status == 1 & data_type != "TA"]
+  dt <- df[, clean_dam_data(.SD, region_id, experiment_id, t0), by="data_type"]
 
   setkeyv(dt, "id")
 
-  dt <- dt[region_id %in% regions]
   meta <- unique(dt[, c("id","region_id")],by="id")
 
   meta[,experiment_id := experiment_id]
@@ -90,7 +80,26 @@ read_dam2_file <- function(path,
   file_info <- meta[,.(file_info =  list(list(path = path, file = basename(path)))), by="id"]
   meta <- file_info[meta]
   #meta <- met[,file:=basename(path)]
-  dt[,region_id:=NULL]
-
+  dt <- dcast(dt, id + t ~ data_type,value.var="value")
+  setkeyv(dt, "id")
   behavr::behavr(dt,meta)
 }
+
+clean_dam_data <- function(df, regions, experiment_id, t0){
+  df <- unique(df, by="datetime")
+  df <- df[, (colnames(df) %like% "(channel)|(datetime)"), with=F]
+  setnames(df,
+           grep("channel_", colnames(df), value = T),
+           gsub("channel_", "0", grep("channel_", colnames(df), value = T)))
+  df <- melt(df, id="datetime", variable.name = "channel", value.name = "value")
+
+  dt <- df[ ,. (id = as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
+                region_id = as.integer(channel),
+                t = as.numeric(datetime-t0, units = "secs"),
+                value=value)]
+
+  setkeyv(dt, "id")
+  dt <- dt[region_id %in% regions]
+  dt
+}
+
