@@ -24,7 +24,7 @@
 #' @seealso
 #'  * [load_dam2] --  to load data from many files and biological conditions using metadata (recommended)
 #' @export
-# read_dam2_file <- function(path,
+read_dam2_file <- function(path,
                             region_id=1:32,
                             start_datetime=-Inf,
                             stop_datetime=+Inf,
