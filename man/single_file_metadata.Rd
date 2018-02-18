@@ -6,7 +6,7 @@
 \title{A simple toy metadata defining the experimental conditions of
 32 animals monitored at the same time in a single DAM2 monitor.
 Each animal has its own channel (region_id), as well as a condition and genotype.
-It serves as an example for \link{link_dam2_metadata}.}
+It serves as an example for \link{link_dam_metadata}.}
 \format{An object of class \code{data.frame} with 32 rows and 6 columns.}
 \usage{
 single_file_metadata
@@ -15,7 +15,7 @@ single_file_metadata
 A simple toy metadata defining the experimental conditions of
 32 animals monitored at the same time in a single DAM2 monitor.
 Each animal has its own channel (region_id), as well as a condition and genotype.
-It serves as an example for \link{link_dam2_metadata}.
+It serves as an example for \link{link_dam_metadata}.
 }
 \author{
 Quentin Geissmann

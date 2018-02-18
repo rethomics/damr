@@ -1,6 +1,6 @@
-#' Reads data from a single DAM2 file
+#' Reads data from a single DAM2 single beam or DAM5 multibeam file
 #'
-#' This function retreives activity data in a DAM2 file.
+#' This function retreives activity data in a DAM file.
 #' It allows selection of a date range and channels (i.e. regions).
 #'
 #' @param path location of the file to read (character)
@@ -19,12 +19,13 @@
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
 #' @examples
 #' path <- damr_example("M064.txt")
-#' dt <- read_dam2_file(path, region_id = c(1:3), start_datetime = "2017-06-30 15:00:00")
+#' dt <- read_dam_file(path, region_id = c(1:3), start_datetime = "2017-06-30 15:00:00")
 #' print(dt)
 #' @seealso
-#'  * [load_dam2] --  to load data from many files and biological conditions using metadata (recommended)
-#' @export
-read_dam2_file <- function(path,
+#'  * [load_dam] --  to load data from many files and biological conditions using metadata (recommended)
+#' @aliases read_dam2_file
+#' @export read_dam_file read_dam2_file
+read_dam_file <- function(path,
                             region_id=1:32,
                             start_datetime=-Inf,
                             stop_datetime=+Inf,
@@ -103,3 +104,12 @@ clean_dam_data <- function(df, regions, experiment_id, t0){
   dt
 }
 
+
+read_dam2_file <- function(path,
+                          region_id=1:32,
+                          start_datetime=-Inf,
+                          stop_datetime=+Inf,
+                          tz="UTC"){
+  message("read_dam2_file is deprecated, please use read_dam_file instead")
+  read_dam_file(path, region_id, start_datetime, stop_datetime, tz)
+}
