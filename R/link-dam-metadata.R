@@ -23,8 +23,8 @@
 #'
 #'
 #' The time in data is expressed relatively to start_date.
-#' In other words, if you do circadian analysis, and your `D->L`` transitions are at 09:00:00, you want to set
-#' `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
+#' In other words, if you do circadian analysis, and your `D->L` transitions are at 09:00:00,
+#' you want to set `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
 #' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
 #' @seealso
 #' * [load_dam] -- to subsequently load the actual data

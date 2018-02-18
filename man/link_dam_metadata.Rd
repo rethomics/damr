@@ -38,7 +38,9 @@ The provided \link{data.frame} or \link{data.table} has typically one row per re
 }
 
 The time in data is expressed relatively to start_date.
-In other words, if you do circadian analysis, and your \code{D->L`` transitions are at 09:00:00, you want to set}start_datetime = "YYY-MM-DD 09:00:00"\code{. The result_directory is the folder where your files live. For instance,}result_dir = "C:/where/I/Store/my/txt/files/"`
+In other words, if you do circadian analysis, and your \code{D->L} transitions are at 09:00:00,
+you want to set \code{start_datetime = "YYY-MM-DD 09:00:00"}. The result_directory is the folder where your files live.
+For instance, \code{result_dir = "C:/where/I/Store/my/txt/files/"}
 }
 \references{
 \itemize{
