@@ -40,18 +40,38 @@ read_dam_file <- function(path,
                                                  tz)
   first_line = first_last_lines$id[1]
   last_line = first_last_lines$id[2]
-  col_types=do.call(readr::cols_only, DAM5_COLS)
+  # col_types=do.call(readr::cols_only, DAM5_COLS)
+  #
 
-  # todo we do not have to read all regions and when filter.
-  # We can already load only the channels we want here.
-  df <-readr::read_tsv(path, col_names = names(DAM5_COLS),
-                                 col_types = col_types,
-                                 skip = first_line - 1,
-                                 n_max = last_line - first_line + 1,
-                                 progress = F)
-
+   # todo we do not have to read all regions and when filter.
+   # We can already load only the channels we want here.
+   # df0 <-readr::read_tsv(path, col_names = names(DAM5_COLS),
+   #                                col_types = col_types,
+   #                                skip = first_line - 1,
+   #                                n_max = last_line - first_line + 1,
+   #                                progress = F)
+  # df0 <- as.data.table(df0)
 #  return(start_datetime)
-  df <- as.data.table(df)
+
+
+  col_names =  names(DAM5_COLS)
+  col_class = c(i="integer", c="character", "_"="NULL")[as.character(DAM5_COLS)]
+  #col_class <- col_class[which(DAM5_COLS != "_")]
+
+  possible_classes <- unique(col_class)
+  col_class <- lapply(possible_classes, function(x)which( col_class %in% x))
+  names(col_class) <- possible_classes
+
+  df <- fread(path,
+              #header = F,
+              col.names = col_names[which(DAM5_COLS != "_")],
+              colClasses = col_class,
+              #select = which(DAM5_COLS != "_"),
+              skip = first_line - 1,
+              nrows =  last_line - first_line + 1,
+              showProgress = FALSE)
+
+
   df <- df[, datetime := paste(date,time, sep=" ")]
 
   suppressWarnings(
