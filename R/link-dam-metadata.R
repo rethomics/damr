@@ -1,7 +1,7 @@
-#' Link DAM2 metadata to result files
+#' Link DAM2 or DAM5 metadata to result files
 #'
-#' This function checks and add columns to DAM2 metadata.
-#' This way, if can subsequently be loaded (via [load_dam2]).
+#' This function checks and add columns to DAMS metadata.
+#' This way, if can subsequently be loaded (via [load_dam]).
 #'
 #' @param x object such as a [data.frame], or the name of a file (see detail)
 #' @param result_dir the root directory where all daily data are saved
@@ -23,15 +23,16 @@
 #'
 #'
 #' The time in data is expressed relatively to start_date.
-#' In other words, if you do circadian analysis, and your `D->L`` transitions are at 09:00:00, you want to set
-#' `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
+#' In other words, if you do circadian analysis, and your `D->L` transitions are at 09:00:00,
+#' you want to set `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
 #' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
 #' @seealso
-#' * [load_dam2] -- to subsequently load the actual data
+#' * [load_dam] -- to subsequently load the actual data
 #' @references
 #' * [metadata tutorial](https://rethomics.github.io/metadata.html) -- how to work with metadata
-#' @export
-link_dam2_metadata <- function(x, result_dir){
+#' @export link_dam_metadata link_dam2_metadata
+#' @aliases link_dam2_metadata
+link_dam_metadata <- function(x, result_dir){
 
   if(is.character(x))
     q <- data.table::fread(x)
@@ -73,3 +74,11 @@ link_dam2_metadata <- function(x, result_dir){
 
 
 }
+
+
+link_dam2_metadata <- function(x, result_dir){
+  message("link_dam2_metadata is deprecated, please use link_dam_metadata instead")
+  link_dam_metadata(x, result_dir)
+}
+
+

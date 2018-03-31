@@ -1,4 +1,4 @@
-find_dam2_first_last_lines <- function(file,
+find_dam_first_last_lines <- function(file,
                                        start_datetime=-Inf,
                                        stop_datetime=+Inf,
                                        tz="UTC"){
@@ -26,12 +26,13 @@ find_dam2_first_last_lines <- function(file,
   else
     fun <- fread
 
-  cols_to_keep <- which(names(DAM2_COLS) %in% c("date", "time", "status"))
+  cols_to_keep <- which(names(DAM5_COLS) %in% c("date", "time", "status", "data_type"))
   datetimes_dt <- fun(file,
-                        col.names = names(DAM2_COLS)[cols_to_keep],
+                        col.names = names(DAM5_COLS)[cols_to_keep],
                         select =cols_to_keep)
 
   datetimes_dt[, id := 1:.N]
+  datetimes_dt[, read_id := cumsum(data_type == "CT" | data_type == "0")]
   datetimes_dt <- datetimes_dt[status == 1]
   datetimes_dt <- datetimes_dt[, datetime := paste(date,time, sep=" ")]
   suppressWarnings(
@@ -42,7 +43,7 @@ find_dam2_first_last_lines <- function(file,
 
 
   ## duplicated time stamps, clock changes?
-  n_dups <- sum(duplicated(datetimes_dt$datetime_posix))
+  n_dups <- sum(duplicated(unique(datetimes_dt, by = "read_id")$datetime_posix))
   if(n_dups > 50){
     stop("More than 50 duplicated dates entries in the metadata file.
          This is a likely instance of the recording computer changing time
@@ -54,7 +55,7 @@ find_dam2_first_last_lines <- function(file,
                     file))
   }
 
-  sampling_periods <- unique(na.omit(datetimes_dt$diff_t))
+  sampling_periods <- unique(na.omit(unique(datetimes_dt, by = "read_id")$diff_t))
   if(any(abs(sampling_periods) >= 3600))
     stop("Time has jumped for an hour or more!
           No valid data during this time.

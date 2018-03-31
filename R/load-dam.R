@@ -1,6 +1,6 @@
-#' Load DAM2 data from one or several continuous files
+#' Load DAM data from one or several continuous files
 #'
-#' Uses "linked metadata" to load data from DAM2 arrays.
+#' Uses "linked metadata" to load data from single beam DAM2 or multibeam DAM5 arrays.
 #'
 #' @param metadata [data.table::data.table] used to load data (see detail)
 #' @param FUN function (optional) to transform the data from each animal
@@ -12,7 +12,7 @@
 #' * `t` -- time
 #' * `activity` -- number of beam crosses
 #' @details
-#' the linked metadata should be generated using [link_dam2_metadata].
+#' the linked metadata should be generated using [link_dam_metadata].
 #' @examples
 #' # This is where our data lives
 #' root_dir <- damr_example_dir()
@@ -22,32 +22,33 @@
 #' data(single_file_metadata)
 #' print(single_file_metadata)
 #'
-#' metadata <- link_dam2_metadata(single_file_metadata, root_dir)
+#' metadata <- link_dam_metadata(single_file_metadata, root_dir)
 #'
 #' # we find and load the matching data
-#' dt <- load_dam2(metadata)
+#' dt <- load_dam(metadata)
 #' print(dt)
 #'
 #' # genotype and condition to our metadata:
 #' print(dt[meta=TRUE])
 #'
 #' # Just the first few reads, we run `head()` on each animal
-#' dt <- load_dam2(metadata, FUN=head)
+#' dt <- load_dam(metadata, FUN=head)
 #' print(dt)
 #' @seealso
 #' * [behavr::behavr] --  the class of the resulting object
-#' * [read_dam2_file] --  to load data from a single file (without metadata)
+#' * [read_dam_file] --  to load data from a single file (without metadata)
 #' @references
 #' * [damr tutorial](https://rethomics.github.io/damr.html) -- how to use this function in practice
-#' @export
-load_dam2 <- function(metadata, FUN=NULL, ...){
+#' @aliases load_dam2
+#' @export load_dam load_dam2
+load_dam <- function(metadata, FUN=NULL, ...){
   tz="UTC"
   # TODO check for uniqueness in query!!
   q <- data.table::copy(metadata)
   q[, path:=sapply(file_info, function(x) x$path)]
   to_read <- q[,.(regions = list(region_id)),by=c("path","start_datetime","stop_datetime")]
   s <- to_read[,
-               list(data=list(read_dam2_file(path,
+               list(data=list(read_dam_file(path,
                                                     regions[[1]],
                                                     start_datetime,
                                                     stop_datetime,
@@ -75,3 +76,8 @@ load_dam2 <- function(metadata, FUN=NULL, ...){
   d
 }
 
+
+load_dam2 <- function(metadata, FUN=NULL, ...){
+  message("load_dam2 is deprecated, please use load_dam instead")
+  load_dam(metadata, FUN=NULL, ...)
+}
