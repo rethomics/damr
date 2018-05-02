@@ -69,7 +69,8 @@ read_dam_file <- function(path,
               #select = which(DAM5_COLS != "_"),
               skip = first_line - 1,
               nrows =  last_line - first_line + 1,
-              showProgress = FALSE)
+              showProgress = FALSE,
+              drop=col_class$`NULL`)
 
 
   df <- df[, datetime := paste(date,time, sep=" ")]
