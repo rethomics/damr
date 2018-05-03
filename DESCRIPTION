@@ -1,7 +1,7 @@
 Package: damr
 Title: Interface for Drosophila Activity Monitor System Result Files
-Date: 2017-07-26
-Version: 0.0.0.9000
+Date: 2018-05-03
+Version: 0.3.1
 Authors@R: c(
     person("Quentin", "geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
     )
