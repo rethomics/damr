@@ -1,6 +1,6 @@
-#' Reads data from a single DAM2 single beam or DAM5 multibeam file
+#' Reads data from a single DAM2 single beam or a DAM5 multibeam file
 #'
-#' This function retreives activity data in a DAM file.
+#' This function retrieves activity data in a DAMS file.
 #' It allows selection of a date range and channels (i.e. regions).
 #'
 #' @param path location of the file to read (character)
@@ -15,7 +15,7 @@
 #' * `activity` -- number of beam crosses
 #' @details `start_datetime` and `stop_datetime` are formated as "YYYY-MM-DD HH:MM:SS".
 #' `start_datetime` is used as the reference time (ZT0).
-#' Therefore, if you are interested in circadian analysis and D->L transitions are at 10:00:00,
+#' Therefore, if you are interested in circadian analysis and D -> L transitions are at 10:00:00,
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
 #' @examples
 #' path <- damr_example("M064.txt")
@@ -30,6 +30,7 @@ read_dam_file <- function(path,
                             start_datetime=-Inf,
                             stop_datetime=+Inf,
                             tz="UTC"){
+  . =  datetime =  time =  datetime_posix = data_type = status = NULL
   # todo check whether region has duplicates/ is in range
   start_datetime <- parse_datetime(start_datetime,tz=tz)
   stop_datetime <- parse_datetime(stop_datetime,tz=tz)
@@ -108,6 +109,8 @@ read_dam_file <- function(path,
 }
 
 clean_dam_data <- function(df, regions, experiment_id, t0){
+  . = channel = datetime = id = region_id = t = value = NULL
+
   df <- unique(df, by="datetime")
   df <- df[, (colnames(df) %like% "(channel)|(datetime)"), with=F]
   setnames(df,
@@ -118,7 +121,7 @@ clean_dam_data <- function(df, regions, experiment_id, t0){
   dt <- df[ ,. (id = as.factor(sprintf("%s|%02d",experiment_id, as.integer(channel))),
                 region_id = as.integer(channel),
                 t = as.numeric(datetime-t0, units = "secs"),
-                value=value)]
+                value = value)]
 
   setkeyv(dt, "id")
   dt <- dt[region_id %in% regions]

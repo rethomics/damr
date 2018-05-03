@@ -1,7 +1,11 @@
 find_dam_first_last_lines <- function(file,
-                                       start_datetime=-Inf,
-                                       stop_datetime=+Inf,
-                                       tz="UTC"){
+                                       start_datetime = -Inf,
+                                       stop_datetime = +Inf,
+                                       tz = "UTC"){
+  . = data_type = status = datetime =  time =  datetime_posix = diff_t = NULL
+  id = read_id = NULL
+
+
   start_datetime <- parse_datetime(start_datetime,tz=tz)
 
   has_time <- TRUE
@@ -84,7 +88,7 @@ fread_zip <- function(zipfile, ...) {
 
   ## Create the temporary directory or flush CSVs if it exists already
   if (!file.exists(tempdir())) {dir.create(tempdir())
-  } else {file.remove(list.files(tempdir(), full = T, pattern = "*.csv|*.txt"))
+  } else {file.remove(list.files(tempdir(), full.names = TRUE, pattern = "*.csv|*.txt"))
   }
 
   ## Unzip the file into the dir

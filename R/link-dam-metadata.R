@@ -33,7 +33,7 @@
 #' @export link_dam_metadata link_dam2_metadata
 #' @aliases link_dam2_metadata
 link_dam_metadata <- function(x, result_dir){
-
+  . = id = region_id = experiment_id = start_datetime = path = NULL
   if(is.character(x))
     q <- data.table::fread(x)
   else

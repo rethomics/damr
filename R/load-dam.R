@@ -42,6 +42,10 @@
 #' @aliases load_dam2
 #' @export load_dam load_dam2
 load_dam <- function(metadata, FUN=NULL, ...){
+  . = regions = start_datetime =  stop_datetime =  data = diff_t = NULL
+  region_id = path = file_info =NULL
+
+
   tz="UTC"
   # TODO check for uniqueness in query!!
   q <- data.table::copy(metadata)
