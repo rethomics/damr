@@ -1,5 +1,5 @@
 Package: damr
-Title: Interface for Drosophila Activity Monitor System Result Files
+Title: Interface to Drosophila Activity Monitor System Result Files
 Date: 2018-05-03
 Version: 0.3.1
 Authors@R: c(
