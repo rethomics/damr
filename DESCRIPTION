@@ -1,11 +1,11 @@
 Package: damr
-Title: Read Drosophila Activity Monitor Data
+Title: Import of Drosophila Activity Monitor System File
 Date: 2017-07-26
 Version: 0.0.0.9000
 Authors@R: c(
     person("Quentin", "geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
     )
-Description: Retreive behavioural data from the widely used Drosophila Activity Monitor System (DAMS).
+Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, Trikinetics) into the rethomics framework.
 Depends:  
     R (>= 3.00),
     behavr,

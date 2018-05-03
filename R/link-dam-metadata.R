@@ -1,16 +1,16 @@
 #' Link DAM2 or DAM5 metadata to result files
 #'
 #' This function checks and add columns to DAMS metadata.
-#' This way, if can subsequently be loaded (via [load_dam]).
+#' This way, it can subsequently be loaded (via [load_dam]).
 #'
 #' @param x object such as a [data.frame], or the name of a file (see detail)
 #' @param result_dir the root directory where all daily data are saved
-#' @return a [data.table::data.table] with the same rows as x, and extra columns for further data loading
+#' @return a [data.table::data.table] with the same rows as x, and extra columns used for further data loading
 #' @details
 #' These function will augment metadata from two different types of inputs:
-#' 1. A [data.frame] (recomended)
+#' 1. A [data.frame] (recommended)
 #' In this case, the function will try to match requested data with data available on `result_dir`.
-#' The provided [data.frame] or [data.table] has typically one row per requested individial and the columns
+#' The provided [data.frame] or [data.table] has typically one row per requested individual and the columns
 #' (not necessarily in this order):
 #'     * `file` -- the name of a data file (e.g. `"Monitor3.txt"`), it has to exists in result_dir.
 #'     * `start_datetime` -- the first day **and time** of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
@@ -23,12 +23,14 @@
 #'
 #'
 #' The time in data is expressed relatively to start_date.
-#' In other words, if you do circadian analysis, and your `D->L` transitions are at 09:00:00,
-#' you want to set `start_datetime = "YYY-MM-DD 09:00:00"`. The result_directory is the folder where your files live.
-#' For instance, `result_dir = "C:/where/I/Store/my/txt/files/"`
+#' In other words, if you do circadian analysis, and your `D -> L` transitions are at 09:00:00,
+#' you want to set `start_datetime = "YYY-MM-DD 09:00:00"`.
+#' The `result_directory`` is the folder conraining all result (.txt) files
+#' (for instance, `result_dir = "C:/where/I/Store/my/txt/files/"`)
 #' @seealso
 #' * [load_dam] -- to subsequently load the actual data
 #' @references
+#' * [the rethomics workflow](https://rethomics.github.io/workflow.html) -- on the concept of "linking"
 #' * [metadata tutorial](https://rethomics.github.io/metadata.html) -- how to work with metadata
 #' @export link_dam_metadata link_dam2_metadata
 #' @aliases link_dam2_metadata

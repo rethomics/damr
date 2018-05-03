@@ -1,6 +1,6 @@
 #' Reads data from a single DAM2 single beam or a DAM5 multibeam file
 #'
-#' This function retrieves activity data in a DAMS file.
+#' This function retrieves activity data in a DAMS text file.
 #' It allows selection of a date range and channels (i.e. regions).
 #'
 #' @param path location of the file to read (character)
@@ -15,14 +15,14 @@
 #' * `activity` -- number of beam crosses
 #' @details `start_datetime` and `stop_datetime` are formated as "YYYY-MM-DD HH:MM:SS".
 #' `start_datetime` is used as the reference time (ZT0).
-#' Therefore, if you are interested in circadian analysis and D -> L transitions are at 10:00:00,
+#' Therefore, if you are interested in circadian analysis and `D -> L`` transitions are at 10:00:00,
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
 #' @examples
 #' path <- damr_example("M064.txt")
 #' dt <- read_dam_file(path, region_id = c(1:3), start_datetime = "2017-06-30 15:00:00")
 #' print(dt)
 #' @seealso
-#'  * [load_dam] --  to load data from many files and biological conditions using metadata (recommended)
+#'  * [load_dam] --  to load data from many files and biological conditions using metadata (the recommended alternative)
 #' @aliases read_dam2_file
 #' @export read_dam_file read_dam2_file
 read_dam_file <- function(path,
