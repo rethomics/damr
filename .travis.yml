@@ -6,6 +6,8 @@ cache: packages
 latex: true
 dist: trusty 
 
+r_packages: desc
+
 env:
     global:
         - MAKEFLAGS="-j 2"
