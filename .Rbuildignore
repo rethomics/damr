@@ -1,8 +1,8 @@
+z_template_package
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
-^\.publish_doc\.sh$
 ^Makefile$
 ^cran-comments\.md$
 ^appveyor\.yml$
@@ -10,4 +10,4 @@
 ^.*\.tar\.gz$
 ^.*\.pdf$
 ^\.travis.*$
-^\./z_template_package/$
+
