@@ -1,13 +1,19 @@
 #!/bin/bash
-
 set -e
+
 
 echo "Working on branch $TRAVIS_BRANCH"
 echo "R version: $TRAVIS_R_VERSION"
 
+echo "R RELEASE: $R_RELEASE"
+
+
 [ -z "${GITHUB_PAT}" ] && exit 0
 echo "GITHUB_PAT: OK"
 [ "${TRAVIS_BRANCH}" != "master" ] && exit 0
+
+[[ "${R_RELEASE}" ]] || exit 0
+
 echo "BRANCH: master"
 
 git config user.name "rapporter-travis"

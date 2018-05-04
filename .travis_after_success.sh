@@ -1,4 +1,4 @@
 #!/bin/bash
-if [ -z "${R_RELEASE}" ]
+if [[ "${R_RELEASE}" ]]
 then R -e 'covr::codecov()'
 fi

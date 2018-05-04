@@ -22,7 +22,6 @@ script:
     - bash .travis_check.sh
     - bash .travis_deploy.sh 
 after_success:
-    - set -e
     - bash .travis_after_success.sh     
 notifications:
     email:
