@@ -9,5 +9,5 @@
 ^revdep$
 ^.*\.tar\.gz$
 ^.*\.pdf$
-^z_template_package/$
 ^\.travis.*$
+^\./z_template_package/$
