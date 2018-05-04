@@ -20,7 +20,7 @@ matrix:
 script:
     - sh .travis_script.sh
 after_success:
-    - sh .travis_after_success.sh
+    - if [[ "${R_RELEASE}" ]]; then R -e 'covr::codecov()'; fi
 notifications:
     email:
         on_success: change
