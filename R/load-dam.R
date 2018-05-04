@@ -1,6 +1,6 @@
-#' Load DAM data from one or several continuous files
+#' Load DAMS data from one or several continuous text files
 #'
-#' Uses "linked metadata" to load data from single beam DAM2 or multibeam DAM5 arrays.
+#' Uses "linked metadata" to load data from either single beam (DAM2) or multibeam (DAM5) arrays.
 #'
 #' @param metadata [data.table::data.table] used to load data (see detail)
 #' @param FUN function (optional) to transform the data from each animal
@@ -12,27 +12,25 @@
 #' * `t` -- time
 #' * `activity` -- number of beam crosses
 #' @details
-#' the linked metadata should be generated using [link_dam_metadata].
+#' The linked metadata should be generated using [link_dam_metadata].
 #' @examples
-#' # This is where our data lives
+#' # This is where our toy data lives
 #' root_dir <- damr_example_dir()
 #'
 #' # Metadata already made for us.
 #' # It defines condition and genotype of each animal
 #' data(single_file_metadata)
 #' print(single_file_metadata)
-#'
+#' # Linking:
 #' metadata <- link_dam_metadata(single_file_metadata, root_dir)
 #'
-#' # we find and load the matching data
+#' # We find and load the matching data
 #' dt <- load_dam(metadata)
 #' print(dt)
-#'
-#' # genotype and condition to our metadata:
-#' print(dt[meta=TRUE])
-#'
-#' # Just the first few reads, we run `head()` on each animal
-#' dt <- load_dam(metadata, FUN=head)
+#' # An example of the use of FUN,
+#' # we load only the first few reads by run `head()` on each animal,
+#' # on the fly (no pun intended)
+#' dt <- load_dam(metadata, FUN = head)
 #' print(dt)
 #' @seealso
 #' * [behavr::behavr] --  the class of the resulting object
@@ -42,6 +40,10 @@
 #' @aliases load_dam2
 #' @export load_dam load_dam2
 load_dam <- function(metadata, FUN=NULL, ...){
+  . = regions = start_datetime =  stop_datetime =  data = diff_t = NULL
+  region_id = path = file_info =NULL
+
+
   tz="UTC"
   # TODO check for uniqueness in query!!
   q <- data.table::copy(metadata)

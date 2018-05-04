@@ -3,7 +3,7 @@
 \name{read_dam_file}
 \alias{read_dam_file}
 \alias{read_dam2_file}
-\title{Reads data from a single DAM2 single beam or DAM5 multibeam file}
+\title{Reads data from a single DAM2 single beam or a DAM5 multibeam file}
 \usage{
 read_dam_file(path, region_id = 1:32, start_datetime = -Inf,
   stop_datetime = +Inf, tz = "UTC")
@@ -28,14 +28,13 @@ The data has the columns:
 }
 }
 \description{
-This function retreives activity data in a DAM file.
+This function retrieves activity data in a DAMS text file.
 It allows selection of a date range and channels (i.e. regions).
 }
 \details{
 \code{start_datetime} and \code{stop_datetime} are formated as "YYYY-MM-DD HH:MM:SS".
 \code{start_datetime} is used as the reference time (ZT0).
-Therefore, if you are interested in circadian analysis and D->L transitions are at 10:00:00,
-you probably want to set \code{start_datetime = "YYYY-MM-DD 10:00:00"}.
+Therefore, if you are interested in circadian analysis and \code{D -> L`` transitions are at 10:00:00, you probably want to set}start_datetime = "YYYY-MM-DD 10:00:00"`.
 }
 \examples{
 path <- damr_example("M064.txt")
@@ -44,6 +43,6 @@ print(dt)
 }
 \seealso{
 \itemize{
-\item \link{load_dam} --  to load data from many files and biological conditions using metadata (recommended)
+\item \link{load_dam} --  to load data from many files and biological conditions using metadata (the recommended alternative)
 }
 }

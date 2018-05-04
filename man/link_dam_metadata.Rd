@@ -13,18 +13,18 @@ link_dam_metadata(x, result_dir)
 \item{result_dir}{the root directory where all daily data are saved}
 }
 \value{
-a \link[data.table:data.table]{data.table::data.table} with the same rows as x, and extra columns for further data loading
+a \link[data.table:data.table]{data.table::data.table} with the same rows as x, and extra columns used for further data loading
 }
 \description{
 This function checks and add columns to DAMS metadata.
-This way, if can subsequently be loaded (via \link{load_dam}).
+This way, it can subsequently be loaded (via \link{load_dam}).
 }
 \details{
 These function will augment metadata from two different types of inputs:
 \enumerate{
-\item A \link{data.frame} (recomended)
+\item A \link{data.frame} (recommended)
 In this case, the function will try to match requested data with data available on \code{result_dir}.
-The provided \link{data.frame} or \link{data.table} has typically one row per requested individial and the columns
+The provided \link{data.frame} or \link{data.table} has typically one row per requested individual and the columns
 (not necessarily in this order):
 \itemize{
 \item \code{file} -- the name of a data file (e.g. \code{"Monitor3.txt"}), it has to exists in result_dir.
@@ -38,12 +38,13 @@ The provided \link{data.frame} or \link{data.table} has typically one row per re
 }
 
 The time in data is expressed relatively to start_date.
-In other words, if you do circadian analysis, and your \code{D->L} transitions are at 09:00:00,
-you want to set \code{start_datetime = "YYY-MM-DD 09:00:00"}. The result_directory is the folder where your files live.
-For instance, \code{result_dir = "C:/where/I/Store/my/txt/files/"}
+In other words, if you do circadian analysis, and your \code{D -> L} transitions are at 09:00:00,
+you want to set \code{start_datetime = "YYY-MM-DD 09:00:00"}.
+The \code{result_directory`` is the folder conraining all result (.txt) files (for instance,}result_dir = "C:/where/I/Store/my/txt/files/"`)
 }
 \references{
 \itemize{
+\item \href{https://rethomics.github.io/workflow.html}{the rethomics workflow} -- on the concept of "linking"
 \item \href{https://rethomics.github.io/metadata.html}{metadata tutorial} -- how to work with metadata
 }
 }

@@ -1,5 +1,8 @@
 #' @import behavr
 #' @import data.table
+#' @importFrom stats "na.omit"
+#' @importFrom utils "unzip"
+. = NULL
 NULL
 
 DAM2_COLS <-  as.list(c("i", "c", "c","i", rep("_",6), rep("i",32)))
