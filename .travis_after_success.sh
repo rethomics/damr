@@ -1,1 +1,4 @@
-z_template_package/.travis_after_success.sh
+#!/bin/bash
+if [ -z "${R_RELEASE}" ]
+then R -e 'covr::codecov()'
+fi

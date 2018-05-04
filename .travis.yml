@@ -18,9 +18,12 @@ matrix:
     - r: devel
       env: R_DEVEL=true
 script:
-    - sh .travis_script.sh
+    - set -e
+    - bash .travis_check.sh
+    - bash .travis_deploy.sh 
 after_success:
-    - if [[ "${R_RELEASE}" ]]; then R -e 'covr::codecov()'; fi
+    - set -e
+    - bash .travis_after_success.sh     
 notifications:
     email:
         on_success: change
