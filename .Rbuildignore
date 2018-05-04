@@ -1,1 +1,13 @@
-z_template_package/.Rbuildignore
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^README-.*\.png$
+^\.publish_doc\.sh$
+^Makefile$
+^cran-comments\.md$
+^appveyor\.yml$
+^revdep$
+^.*\.tar\.gz$
+^.*\.pdf$
+^z_template_package/$
+^\.travis.*$
