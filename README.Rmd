@@ -1,1 +1,50 @@
-z_template_package/README.Rmd
+```{r, echo=FALSE}
+pkg_name <- desc::desc_get_field("Package","DESCRIPTION")
+pkg_name_code <- sprintf('`%s`',pkg_name)
+
+travis = list()
+travis$img <- sprintf('https://travis-ci.org/rethomics/%s.svg?branch=master',pkg_name)
+travis$url <- sprintf('https://travis-ci.org/rethomics/%s',pkg_name)
+travis$badge <- sprintf("[![Travis-CI Build Status](%s)](%s)", travis$img,travis$url)
+
+codecov = list()
+codecov$img <- sprintf('https://img.shields.io/codecov/c/github/rethomics/%s/master.svg',pkg_name)
+codecov$url <- sprintf('https://codecov.io/github/rethomics/%s?branch=master',pkg_name)
+codecov$badge <- sprintf("[![Coverage Status](%s)](%s)", codecov$img,codecov$url)
+
+cran = list()
+cran$img <- sprintf('http://www.r-pkg.org/badges/version/%s',pkg_name)
+cran$url <- sprintf('https://cran.r-project.org/package=%s',pkg_name)
+cran$badge <- sprintf("[![CRAN](%s)](%s)", cran$img,cran$url)
+
+
+cran_log = list()
+cran_log$img <- sprintf('https://cranlogs.r-pkg.org/badges/%s',pkg_name)
+cran_log$url <- sprintf('https://www.rdocumentation.org/packages/%s',pkg_name)
+cran_log$badge <- sprintf("[![CRAN log](%s)](%s)", cran_log$img,cran_log$url)
+
+all_badges <- list(travis,codecov,cran,cran_log)
+
+all_badges <-paste(sapply(all_badges, function(l)l$badge), collapse = "")
+tutorial_url <- sprintf("https://rethomics.github.io/%s.html", pkg_name)
+```
+
+
+# `r pkg_name_code``r all_badges`
+
+<!-- [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/tidyverse/hms?branch=master&svg=true)](https://ci.appveyor.com/project/tidyverse/hms)  -->
+
+<!-- [![Coverage Status](https://img.shields.io/codecov/c/github/tidyverse/hms/master.svg)](https://codecov.io/github/tidyverse/hms?branch=master) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/hms)](https://cran.r-project.org/package=hms) -->
+
+`r pkg_name_code` is part of the [rethomics framework](https://rethomics.github.io/).
+This README is a short explanation of the basics of `r pkg_name_code`.
+A comprehensive tutorial is available on the [rethomics webpage](`r tutorial_url`).
+We also provide a [conventional pdf documentation](`r sprintf("%s.pdf", pkg_name)`).
+
+
+## Installation
+
+```r
+library(devtools)
+install_github("rethomics/`r pkg_name`")
+```

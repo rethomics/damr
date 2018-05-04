@@ -1,1 +1,5 @@
-z_template_package/.gitignore
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.tar.gz
