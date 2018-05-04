@@ -1,13 +1,1 @@
-z_template_package
-^.*\.Rproj$
-^\.Rproj\.user$
-^README\.Rmd$
-^README-.*\.png$
-^Makefile$
-^cran-comments\.md$
-^appveyor\.yml$
-^revdep$
-^.*\.tar\.gz$
-^.*\.pdf$
-^\.travis.*$
-
+z_template_package/.Rbuildignore
