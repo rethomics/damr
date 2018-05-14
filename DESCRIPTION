@@ -3,7 +3,8 @@ Title: Interface to Drosophila Activity Monitor System Result Files
 Date: 2018-05-03
 Version: 0.3.1
 Authors@R: c(
-    person("Quentin", "Geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com")
+    person("Quentin", "Geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com"),
+    person("Hadley", "Wickham", role = c("aut"))
     )
 Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, TriKinetics) into the rethomics framework.
 Depends:  

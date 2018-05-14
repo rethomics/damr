@@ -34,7 +34,8 @@ It allows selection of a date range and channels (i.e. regions).
 \details{
 \code{start_datetime} and \code{stop_datetime} are formated as "YYYY-MM-DD HH:MM:SS".
 \code{start_datetime} is used as the reference time (ZT0).
-Therefore, if you are interested in circadian analysis and \code{D -> L`` transitions are at 10:00:00, you probably want to set}start_datetime = "YYYY-MM-DD 10:00:00"`.
+Therefore, if you are interested in circadian analysis and \code{D -> L} transitions are at 10:00:00,
+you probably want to set \code{start_datetime = "YYYY-MM-DD 10:00:00"}.
 }
 \examples{
 path <- damr_example("M064.txt")
