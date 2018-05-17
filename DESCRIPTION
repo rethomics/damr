@@ -1,7 +1,7 @@
 Package: damr
 Title: Interface to Drosophila Activity Monitor System Result Files
-Date: 2018-05-03
-Version: 0.3.1
+Date: 2018-05-17
+Version: 0.3.2
 Authors@R: c(
     person("Quentin", "Geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com"),
     person("Hadley", "Wickham", role = c("aut"))
@@ -16,7 +16,9 @@ Imports:
 Suggests: 
     testthat,
     covr,
-    knitr
+    knitr,
+    ggetho,
+    zeitgebr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
