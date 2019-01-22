@@ -23,4 +23,5 @@ DATA_TYPE_NAMES <- c("C1"= "C1",
        "D3" = "D3",
        "D4" = "D4",
        "Pn" = "Pn",
-       "0" = "activity")
+       "0" = "activity",
+       "PnF" = "Pn")
