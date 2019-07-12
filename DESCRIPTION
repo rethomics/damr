@@ -1,13 +1,13 @@
 Package: damr
 Title: Interface to Drosophila Activity Monitor System Result Files
-Date: 2018-05-17
-Version: 0.3.2
+Date: 2019-07-12
+Version: 0.3.4
 Authors@R: c(
     person("Quentin", "Geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com"),
     person("Hadley", "Wickham", role = c("aut"))
     )
 Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, TriKinetics) into the rethomics framework.
-Depends:  
+Depends: 
     R (>= 3.00),
     behavr,
     data.table
@@ -24,5 +24,5 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/rethomics/damr
 BugReports: https://github.com/rethomics/damr/issues
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)

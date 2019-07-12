@@ -6,7 +6,7 @@ parse_datetime <- function(x, tz="UTC"){
   if(is.infinite(x) | "POSIXct" %in% class(x))
     return(x)
   if(is.character(x)){
-    out <- readr::parse_datetime(x, locale = readr::locale(tz = tz))
+    out <- readr::parse_datetime(x, locale = readr::locale("en", tz = tz))
     readr::stop_for_problems(out)
     return(out)
   }
