@@ -6,7 +6,7 @@ Authors@R: c(
     person("Quentin", "Geissmann", role = c("aut", "cre"), email = "qgeissmann@gmail.com"),
     person("Hadley", "Wickham", role = c("aut"))
     )
-Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, TriKinetics) into the rethomics framework.
+Description: Loads behavioural data from the widely used Drosophila Activity Monitor System (DAMS, TriKinetics <https://trikinetics.com/>) into the rethomics framework.
 Depends: 
     R (>= 3.00),
     behavr,

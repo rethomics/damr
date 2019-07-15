@@ -6,7 +6,7 @@
 `damr` is part of the [rethomics framework](https://rethomics.github.io/).
 This README is a short explanation of the basics of `damr`.
 A comprehensive tutorial is available on the [rethomics webpage](https://rethomics.github.io/damr.html).
-We also provide a [conventional pdf documentation](damr.pdf).
+We also provide a [conventional pdf documentation](https://github.com/rethomics/damr/raw/master/damr.pdf).
 
 
 ## Installation
