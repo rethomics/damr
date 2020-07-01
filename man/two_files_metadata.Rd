@@ -7,7 +7,9 @@
 64 animals monitored at the same time in two separate DAM2 monitors.
 Each animal has its own channel (region_id), as well as a condition and genotype.
 It serves as an example for \link{link_dam_metadata}.}
-\format{An object of class \code{data.frame} with 64 rows and 6 columns.}
+\format{
+An object of class \code{data.frame} with 64 rows and 6 columns.
+}
 \usage{
 two_files_metadata
 }

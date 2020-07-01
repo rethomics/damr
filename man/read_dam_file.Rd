@@ -5,8 +5,14 @@
 \alias{read_dam2_file}
 \title{Reads data from a single DAM2 single beam or a DAM5 multibeam file}
 \usage{
-read_dam_file(path, region_id = 1:32, start_datetime = -Inf,
-  stop_datetime = +Inf, tz = "UTC")
+read_dam_file(
+  path,
+  region_id = 1:32,
+  start_datetime = -Inf,
+  stop_datetime = +Inf,
+  tz = "UTC",
+  date_format = "\%d \%b \%y"
+)
 }
 \arguments{
 \item{path}{location of the file to read (character)}
@@ -16,6 +22,8 @@ read_dam_file(path, region_id = 1:32, start_datetime = -Inf,
 \item{start_datetime, stop_datetime}{the start and the end of an the experiment (see details)}
 
 \item{tz}{the timezone (see \link{OlsonNames} for a list)}
+
+\item{date_format}{the format of the dates in the DAM file (see details)}
 }
 \value{
 A \link{behavr} table.
@@ -36,6 +44,14 @@ It allows selection of a date range and channels (i.e. regions).
 \code{start_datetime} is used as the reference time (ZT0).
 Therefore, if you are interested in circadian analysis and \code{D -> L} transitions are at 10:00:00,
 you probably want to set \code{start_datetime = "YYYY-MM-DD 10:00:00"}.
+
+According to the acquisition system, the date format can be inconsistently formatted between DAM Systems.
+Specify the format using \link{strptime} syntax. For instance:
+\itemize{
+\item \code{"\%d \%b \%y"}  -- the default, to parse \code{"15 Nov 2019"}
+\item \code{"\%d-\%m-\%y"}  -- to parse \code{"15-11-2019"}
+\item \code{"\%Y-\%m-\%d"}  -- the default to parse \code{"2019-11-15"}
+}
 }
 \examples{
 path <- damr_example("M064.txt")

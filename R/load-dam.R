@@ -3,6 +3,7 @@
 #' Uses "linked metadata" to load data from either single beam (DAM2) or multibeam (DAM5) arrays.
 #'
 #' @param metadata [data.table::data.table] used to load data (see detail)
+#' @param date_format How dates are formatted in the DAM result files (see [read_dam_file])
 #' @param FUN function (optional) to transform the data from each animal
 #' immediately after is has been loaded.
 #' @param ... extra arguments to be passed to `FUN`
@@ -39,7 +40,7 @@
 #' * [damr tutorial](https://rethomics.github.io/damr.html) -- how to use this function in practice
 #' @aliases load_dam2
 #' @export load_dam load_dam2
-load_dam <- function(metadata, FUN=NULL, ...){
+load_dam <- function(metadata, date_format="%d %b %y", FUN=NULL, ...){
   . = regions = start_datetime =  stop_datetime =  data = diff_t = NULL
   region_id = path = file_info =NULL
 
@@ -54,7 +55,8 @@ load_dam <- function(metadata, FUN=NULL, ...){
                                                     regions[[1]],
                                                     start_datetime,
                                                     stop_datetime,
-                                                    tz=tz)
+                                                    tz=tz,
+                                                    date_format=date_format)
                               )
                     ),
                by="path,start_datetime,stop_datetime"]
