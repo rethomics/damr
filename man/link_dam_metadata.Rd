@@ -32,7 +32,7 @@ The provided \link{data.frame} or \link{data.table} has typically one row per re
 \item \code{stop_datetime} -- the last day and time of the requested experiment (e.g. \code{"2014-12-30  19:00:00"} or simply \code{"2014-12-30"}).
 \item \code{region_id} -- the channel (between 1 and 32) in which the animal was in (e.g. \code{20}).
 \code{region_id} is optional. If not provided, all 32 channels are loaded \emph{with the same conditions}.
-\item \code{???} \emph{any number of arbitrary columns} to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
+\item \verb{???} \emph{any number of arbitrary columns} to associate \code{conditions}/\code{treatments}/\code{genotypes}/... to the previous columns.
 }
 \item The name of a CSV file that contains a table as described in \code{1}.
 }
@@ -40,7 +40,7 @@ The provided \link{data.frame} or \link{data.table} has typically one row per re
 The time in data is expressed relatively to start_date.
 In other words, if you do circadian analysis, and your \code{D -> L} transitions are at 09:00:00,
 you want to set \code{start_datetime = "YYY-MM-DD 09:00:00"}.
-The \code{result_directory`` is the folder conraining all result (.txt) files (for instance, }result_dir = "C:/where/I/Store/my/txt/files/"`)
+The \verb{result_directory`` is the folder conraining all result (.txt) files (for instance, }result_dir = "C:/where/I/Store/my/txt/files/"`)
 }
 \references{
 \itemize{
