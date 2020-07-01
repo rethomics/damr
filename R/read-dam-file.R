@@ -14,9 +14,9 @@
 #' Therefore, if you are interested in circadian analysis and `D -> L` transitions are at 10:00:00,
 #' you probably want to set `start_datetime = "YYYY-MM-DD 10:00:00"`.
 #'
-#' According to the acquisition system, the date format can be inconsistent between DAM files.
+#' According to the acquisition system, the date format can be inconsistently formatted between DAM Systems.
 #' Specify the format using [strptime] syntax. For instance:
-#' * `"%d %b %y"`  -- the default to parse `"15 Nov 2019"`
+#' * `"%d %b %y"`  -- the default, to parse `"15 Nov 2019"`
 #' * `"%d-%m-%y"`  -- to parse `"15-11-2019"`
 #' * `"%Y-%m-%d"`  -- the default to parse `"2019-11-15"`
 #' @return A [behavr] table.

@@ -45,10 +45,10 @@ It allows selection of a date range and channels (i.e. regions).
 Therefore, if you are interested in circadian analysis and \code{D -> L} transitions are at 10:00:00,
 you probably want to set \code{start_datetime = "YYYY-MM-DD 10:00:00"}.
 
-According to the acquisition system, the date format can be inconsistent between DAM files.
+According to the acquisition system, the date format can be inconsistently formatted between DAM Systems.
 Specify the format using \link{strptime} syntax. For instance:
 \itemize{
-\item \code{"\%d \%b \%y"}  -- the default to parse \code{"15 Nov 2019"}
+\item \code{"\%d \%b \%y"}  -- the default, to parse \code{"15 Nov 2019"}
 \item \code{"\%d-\%m-\%y"}  -- to parse \code{"15-11-2019"}
 \item \code{"\%Y-\%m-\%d"}  -- the default to parse \code{"2019-11-15"}
 }

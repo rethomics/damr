@@ -5,10 +5,12 @@
 \alias{load_dam2}
 \title{Load DAMS data from one or several continuous text files}
 \usage{
-load_dam(metadata, FUN = NULL, ...)
+load_dam(metadata, date_format = "\%d \%b \%y", FUN = NULL, ...)
 }
 \arguments{
 \item{metadata}{\link[data.table:data.table]{data.table::data.table} used to load data (see detail)}
+
+\item{date_format}{How dates are formatted in the DAM result files (see \link{read_dam_file})}
 
 \item{FUN}{function (optional) to transform the data from each animal
 immediately after is has been loaded.}
