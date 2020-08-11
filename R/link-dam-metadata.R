@@ -53,6 +53,7 @@ link_dam_metadata <- function(x, result_dir){
 
   # force format for midnight dates (#6)
   q[, start_datetime := sapply(start_datetime, function(x) format(parse_datetime(x), format = "%F %T"))]
+  q[, stop_datetime := sapply(stop_datetime, function(x) format(parse_datetime(x), format = "%F %T"))]
 
   q[,experiment_id := sprintf("%s|%s",
                               start_datetime,

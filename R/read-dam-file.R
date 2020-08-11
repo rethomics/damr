@@ -43,7 +43,8 @@ read_dam_file <- function(path,
   # todo check whether region has duplicates/ is in range
   start_datetime <- parse_datetime(start_datetime,tz=tz)
   stop_datetime <- parse_datetime(stop_datetime,tz=tz)
-
+  # print(str(start_datetime))
+  # print(str(stop_datetime))
   first_last_lines <- find_dam_first_last_lines(path,
                                                  start_datetime,
                                                  stop_datetime,
@@ -51,17 +52,6 @@ read_dam_file <- function(path,
   first_line = first_last_lines$id[1]
   last_line = first_last_lines$id[2]
   # col_types=do.call(readr::cols_only, DAM5_COLS)
-  #
-
-   # todo we do not have to read all regions and when filter.
-   # We can already load only the channels we want here.
-   # df0 <-readr::read_tsv(path, col_names = names(DAM5_COLS),
-   #                                col_types = col_types,
-   #                                skip = first_line - 1,
-   #                                n_max = last_line - first_line + 1,
-   #                                progress = F)
-  # df0 <- as.data.table(df0)
-#  return(start_datetime)
 
 
   col_names =  names(DAM5_COLS)
@@ -98,6 +88,10 @@ read_dam_file <- function(path,
   else
     t0 = start_datetime
 
+  if(is.infinite(stop_datetime))
+    t1 = df$datetime[nrow(df)]
+  else
+    t1 = stop_datetime
   experiment_id <- paste(format(t0, format = "%F %T"), basename(path),sep="|")
   df <- df[status == 1 & data_type != "TA"]
   dt <- df[, clean_dam_data(.SD, region_id, experiment_id, t0), by="data_type"]
@@ -108,13 +102,17 @@ read_dam_file <- function(path,
 
   meta[,experiment_id := experiment_id]
   meta[,start_datetime := t0]
+  meta[,stop_datetime := t1]
 
   file_info <- meta[,.(file_info =  list(list(path = path, file = basename(path)))), by="id"]
   meta <- file_info[meta]
+
   #meta <- met[,file:=basename(path)]
   dt <- dcast(dt, id + t ~ data_type,value.var="value")
   setkeyv(dt, "id")
+
   behavr::behavr(dt,meta)
+
 }
 
 clean_dam_data <- function(df, regions, experiment_id, t0){
