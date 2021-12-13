@@ -49,7 +49,7 @@ load_dam <- function(metadata, date_format="%d %b %y", FUN=NULL, ...){
   # TODO check for uniqueness in query!!
   q <- data.table::copy(metadata)
   q[, path:=sapply(file_info, function(x) x$path)]
-  to_read <- q[,.(regions = list(region_id)),by=c("path","start_datetime","stop_datetime")]
+  to_read <- q[,.(regions = list(region_id)),by=.(path,start_datetime,stop_datetime)]
   s <- to_read[,
                list(data=list(read_dam_file(path,
                                                     regions[[1]],
@@ -59,7 +59,7 @@ load_dam <- function(metadata, date_format="%d %b %y", FUN=NULL, ...){
                                                     date_format=date_format)
                               )
                     ),
-               by="path,start_datetime,stop_datetime"]
+               by=.(path,start_datetime,stop_datetime)]
 
   d <- behavr::bind_behavr_list(s[,data])
 
