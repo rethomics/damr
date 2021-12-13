@@ -39,6 +39,7 @@ find_dam_first_last_lines <- function(file,
   datetimes_dt[, read_id := cumsum(data_type == "CT" | data_type == "0")]
   datetimes_dt <- datetimes_dt[status == 1]
   datetimes_dt <- datetimes_dt[, datetime := paste(date,time, sep=" ")]
+  lct <- Sys.getlocale("LC_TIME"); Sys.setlocale("LC_TIME", "C")
   suppressWarnings(
     datetimes_dt <- datetimes_dt[, datetime_posix  := as.POSIXct(strptime(datetime,"%d %b %y %H:%M:%S",tz=tz))]
   )
