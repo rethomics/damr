@@ -59,7 +59,7 @@ load_dam <- function(metadata, date_format="%d %b %y", FUN=NULL, ...){
                                                     date_format=date_format)
                               )
                     ),
-               by="path,start_datetime,stop_datetime"]
+               by=c("path","start_datetime","stop_datetime")]
 
   d <- behavr::bind_behavr_list(s[,data])
 
