@@ -10,7 +10,7 @@
 #' These function will augment metadata from two different types of inputs:
 #' 1. A [data.frame] (recommended)
 #' In this case, the function will try to match requested data with data available on `result_dir`.
-#' The provided [data.frame] or [data.table] has typically one row per requested individual and the columns
+#' The provided [data.frame] or [data.table::data.table] has typically one row per requested individual and the columns
 #' (not necessarily in this order):
 #'     * `file` -- the name of a data file (e.g. `"Monitor3.txt"`), it has to exists in result_dir.
 #'     * `start_datetime` -- the first day **and time** of the requested experiment (e.g. `"2014-12-28 18:00:00"`).
@@ -35,7 +35,7 @@
 #' @export link_dam_metadata link_dam2_metadata
 #' @aliases link_dam2_metadata
 link_dam_metadata <- function(x, result_dir){
-  . = id = region_id = experiment_id = start_datetime = path = NULL
+  . = id = region_id = experiment_id = start_datetime = stop_datetime= path = NULL
   if(is.character(x))
     q <- data.table::fread(x)
   else
